@@ -1,0 +1,226 @@
+body {
+  font-size: 100%;
+  font-family: calibri,tahoma,arial,sans-serif;
+  color: #443322;
+  background-color: #eeddcc;
+}
+
+hr {
+  margin: 0 0 0 0;
+}
+
+h1 {
+  margin-bottom: 0px;
+  font-size: 1.5em;
+}
+
+#tabs {
+  position: absolute;
+  bottom: 0%;
+  right: 5%;
+}
+
+#tabs ul {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+
+#tabs ul li {
+  display: inline;
+  background-color: #ccbbaa;
+  padding: 0px 10px 0px 10px;
+}
+
+#tabs a {
+  color: #543;
+}
+
+#tabs .current {
+  background-color: #eeddcc ! important;
+}
+
+a {
+  text-decoration: none;
+}
+
+a img {
+  border: none;
+}
+
+a:hover{
+  text-decoration: underline ! important;
+}
+
+#subtabs {
+  height: 20px;
+  text-align: right;
+}
+
+#subtabs ul {
+  padding: 3 20 0 0;
+  margin: 0 0 0 0;
+  font-size: .75em;
+}
+
+#subtabs ul li {
+  display: inline;
+  padding: 0px 10px 0px 10px;
+}
+
+#subtabs a { 
+  color: #543;
+}
+
+#subtabs .current {
+  background-color: #eeddcc ! important;
+}
+
+.title a { 
+  color: #432;
+  float: right;
+}
+
+h1 a { 
+  font-family: helvetica,arial,sans-serif;
+  color: #432;
+}
+
+.notice {
+  background-color: green;
+  padding: 10px;
+}
+
+.error {
+  background-color: red;
+  padding: 10px;
+}
+
+.main {
+  width: 800px;
+  margin: 0px auto;
+}
+
+.content {
+  max-width: 800px;
+  background-color: #ffeedd;
+  padding: .5em 1.5em 1.5em 1.5em;
+  color: black;
+}
+
+.header{
+  background-color: #eeddcc;
+  background-image: url(/images/on_the_rock.png);
+  background-position: top right;
+  background-repeat: no-repeat;
+  height: 239px;
+  position: relative;
+}
+
+
+.user_nav {
+  text-align: right;
+  font-size: 1.5em;
+}
+
+.sign_out {
+  font-size: .5em;
+}
+
+.title {
+  font-size: 2em;
+  position: absolute;
+  bottom: 30%;
+  font-weight: bold;
+}
+
+#comments table {
+  width: 100%
+}
+
+.even {
+  background-color: #ffeeee;
+}
+
+.even td {
+  padding: 0 10px 10px 10px;
+}
+
+.odd {
+  background-color: #ffffee;
+}
+
+.odd td {
+  padding: 0 10px 10px 10px;
+}
+
+.picture_frame {
+  text-align: center;
+  padding: 30px;
+}
+
+.photos table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photos td {
+  height: 60px;
+  width: 100px;
+  padding: 10px 10px 10px 10px;
+}
+
+.feeds {
+  text-align: right;
+}
+
+.feeds span {
+}
+
+.info {
+  font-size: .75em;
+  text-align: center;
+  font-weight: bold;
+  color: #432;
+}
+
+.scroll {
+  overflow-x: scroll;
+}
+
+.date {
+  font-size: .75em;
+  color: #998877;
+  padding-bottom: 3px;
+}
+
+.content_table {
+}
+
+.hide {
+  display: none;
+}
+
+.player_results {
+  text-align: left;
+}
+
+.player_results th {
+  width: 120px;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}

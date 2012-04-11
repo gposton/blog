@@ -1,0 +1,60 @@
+﻿%html
+  %head
+    %title= @post ? @post.title : 'Three programmers walked into a bar...'
+    %link{:rel => "shortcut icon", :href => "/images/favicon.ico"}
+    = auto_discovery_link_tag(:rss, "#{posts_path}.rss")
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = calendar_date_select_includes params[:style]
+  %body
+    %table{:class => 'main'}
+      %tr
+        %td
+          %div#header{:class => 'header'}
+            - if flash[:notice]
+              %span{:class => 'notice'}
+                = flash[:notice]
+            - if flash[:error]
+              %span{:class => 'error'}
+                = flash[:error]
+            %div
+              %div#user_nav{:class => 'user_nav'}
+                - if current_user
+                  %div#sign_out{:class => 'sign_out'}
+                    = "Welcome #{current_user.name} | "
+                    = link_to "Sign out", signout_path
+                - else
+                  %div#sign_in{:class => 'sign_in'}
+                    Sign in with 
+                    %a{:href => '/auth/google', :id => 'auth_google'}
+                      = image_tag('google_32.png', :align => :absmiddle)
+                    -#%a{:href => '/auth/facebook', :id => 'auth_facebook'}
+                      -#= image_tag('facebook_32.png', :align => :absmiddle)
+                    %a{:href => '/auth/twitter', :id => 'auth_twitter'}
+                      = image_tag('twitter_32.png', :align => :absmiddle)
+            %div#title{:class => 'title'}
+              %a{:href => home_path}
+                Three programmers
+                %br
+                walked into a bar...
+            %div#tabs
+              - tabs_tag do |tab|
+                = tab.blog 'Blog', home_path
+                = tab.poker 'Poker', tournaments_path
+                = tab.picture_frame 'Picture Frame', picture_frame_show_path
+      %tr
+        %td
+          %div#subtabs
+            = yield :subtabs
+      %tr
+        %td
+          %div#content{:class => 'content'}
+            = yield
+            - if current_tab == :blog
+              %div{:class => 'feeds'}
+                %div
+                  Follow me on Twitter
+                  = link_to image_tag('twitter_16.png', :align => :baseline), 'http://twitter.com/gposton'
+                %div
+                  Subscribe to my RSS feed
+                  = link_to image_tag('rss_16.png', :align => :baseline), "#{posts_path}.rss"

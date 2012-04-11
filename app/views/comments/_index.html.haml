@@ -1,0 +1,16 @@
+%table
+  %tr
+    %td{:style => 'width: 100%; vertical-align: bottom;'}
+      %h1{:style => 'margin: 0 0 0 0;'}
+        = 'Comments'
+    %td{:style => 'text-align: right;'}
+      = link_to(image_tag('comment.png', :title => 'Add comment'), new_post_comment_path(:post_id => params[:id]))
+%hr
+%table
+  -comments.each do |comment|
+    %tr{:class => cycle("even", "odd")}
+      %td{:style => 'width: 30%;'}
+        =comment.user.name
+      %td{:style => 'width: 70%;'}
+        =comment.content
+

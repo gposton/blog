@@ -1,0 +1,16 @@
+= form_for post do |form|
+  %p
+    = label :post, :title, 'Title:'
+    %br
+    = form.text_field :title, :style => 'width: 400px;'
+    %br
+    = label :post, :content, 'Post:'
+    %br
+    = form.text_area :content, :cols => '100%'
+    %br
+    = label :post, :tags, 'Tags:'
+    %br
+    = text_field_tag :tags, @post.tags.collect{|t| t.name}.join(', ')
+    %br
+    = form.submit
+

@@ -1,0 +1,7 @@
+- content_for :subtabs do
+  %span
+    - tabs_tag :namespace => :subtabs do |tab|
+      = tab.all 'All', posts_path
+      - Tag.all.each do |tag|
+        = tab.send(tag.name, tag.name.capitalize, "#{posts_path}?tag=#{tag.name.gsub(' ', '_')}") unless tag.posts.empty?
+= render :file => 'layouts/application'

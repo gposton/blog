@@ -1,0 +1,8 @@
+= form_for [@post, @comment], :url => post_comments_path(params['post_id']) do |form|
+  %p
+    = label :comment, :content, 'Comment:'
+    %br
+    = form.text_area :content
+    %br
+    = form.submit
+
