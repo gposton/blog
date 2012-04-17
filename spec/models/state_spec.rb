@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe State do
   before :each do
-    @scheduled = State.find_by_name 'scheduled'
-    @open = State.find_by_name 'open'
-    @closed = State.find_by_name 'closed'
+    @scheduled = State.create :name =>'scheduled'
+    @open = State.create :name => 'open'
+    @closed = State.create :name => 'closed'
   end
 
   it 'answer if the state is "closed"' do
