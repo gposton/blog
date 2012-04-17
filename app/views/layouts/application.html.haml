@@ -42,8 +42,10 @@
                 = tab.blog 'Blog', home_path
                 = tab.poker 'Poker', tournaments_path
                 = tab.picture_frame 'Picture Frame', picture_frame_show_path
-            %div#subtabs
-              = yield :subtabs
+      %tr
+        %td
+          %div#subtabs
+            = yield :subtabs
       %tr
         %td
           %div#content{:class => 'content'}

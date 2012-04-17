@@ -25,8 +25,3 @@ Scenario: Only admin users can create a post
     And clicks 'Create Post'
     Then the user should be on the post page with id, post
     And the user should see "Test Content"
-
-Scenario: I can get to the homepage by clicking the Post tab
-    When a user visits the home page
-    And follows 'Blog'
-    Then the user should be on the home page
