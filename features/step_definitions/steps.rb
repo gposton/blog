@@ -30,6 +30,6 @@ Then /^the user should see a link named "(.*)"$/ do |link|
   find_link(link).visible?.should be_true
 end
 
-Then /^the user should be on the (.*?) page with id, (.*)$/ do |page, id|
-  current_path.should == self.send("post_path", id)
+Then /^the user should be on the (.*?) page( with id, (.*))?$/ do |page, id|
+  current_path.should == self.send("#{page}_path", id)
 end
