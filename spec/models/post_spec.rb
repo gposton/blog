@@ -7,15 +7,17 @@ describe Post do
     FactoryGirl.build(:post, :title => 'title').should_not be_valid
   end
 
-  it 'validates the presence and uniqueness of web title' do
-    FactoryGirl.build(:post, :title => '').should_not be_valid
-    FactoryGirl.create(:post, :title => 'title test')
-    FactoryGirl.build(:post, :title => 'title_test').should_not be_valid
+  it 'creates a web_title by replacing spaces with underscores and removing non-alphanumeric characters' do
+    post = Post.create(:title => 'a title,with/some!odd1characters')
+    post.web_title.should == 'a_titlewithsomeodd1characters'
   end
 
-  it 'creates a web_title by replacing spaces with underscores and removing non-alphanumeric characters' do
-    post = FactoryGirl.create(:post, :title => 'a title,with/some!odd1characters')
-    post.web_title.should == 'a_titlewithsomeodd1characters'
+  it 'ensure that the created web_title is unique' do
+    Post.create(:title => 'title')
+    post = Post.create(:title => 'title*')
+    post.web_title = 'title_1'
+    post = Post.create(:title => 'title/')
+    post.web_title = 'title_2'
   end
 
   it 'should use the web title as the id for the url' do

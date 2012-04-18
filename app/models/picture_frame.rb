@@ -7,7 +7,7 @@ class PictureFrame
     current_photo = PictureFrame.currently_displayed
     new_photo.displaying = true
     new_photo.save
-    if current_photo
+    unless current_photo.nil?
       current_photo.displaying = false
       current_photo.save
     end

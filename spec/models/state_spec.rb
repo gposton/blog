@@ -23,6 +23,6 @@ describe State do
   end
 
   it 'returns the open state' do
-    State.open.should == @open
+    State.open.name.should == 'open'
   end
 end

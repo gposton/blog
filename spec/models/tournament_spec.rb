@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe Tournament do
   before :each do
+    @date = '2001_01_01'
     @tournament = FactoryGirl.create(:tournament)
   end
 
@@ -16,12 +17,6 @@ describe Tournament do
 
   it 'validates that a state is present' do
     FactoryGirl.build(:tournament, :state => nil).should_not be_valid
-  end
-
-  it 'validates that a name is automatically created and that it is unique' do
-    tournament = FactoryGirl.create(:tournament, :name => nil)
-    tournament.name.should_not be_nil
-    FactoryGirl.build(:tournament, :name => tournament.name).should_not be_valid
   end
 
   it 'determines if a user is already in the tournament' do
@@ -66,7 +61,8 @@ describe Tournament do
     Tournament.last_weeks_games.count.should be 3
   end
 
-  it 'uses the tournament name as the id in the url' do
-    @tournament.to_param.should be @tournament.name
+  it 'uses the tournament date as the id in the url' do
+    @tournament = FactoryGirl.create(:tournament, :date => Date.new(2011,1,2))
+    @tournament.to_param.should be == '2011_01_02'
   end
 end

@@ -16,11 +16,8 @@ class User < ActiveRecord::Base
   end
 
   def net_winnings
-    total_buy_ins = self.poker_results.collect{|result|result.buy_in}.inject(:+)
-    total_buy_ins = 0 if total_buy_ins.nil?
-    total_winnings = self.poker_results.collect{|result|result.winnings}.inject(:+)
-    total_winnings = 0 if total_winnings.nil?
+    total_buy_ins = self.poker_results.collect{|result|result.buy_in}.inject(:+) || 0
+    total_winnings = self.poker_results.collect{|result|result.winnings}.inject(:+) || 0
     total_winnings - total_buy_ins
   end
 end
-
