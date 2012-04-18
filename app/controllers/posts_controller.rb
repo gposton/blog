@@ -49,6 +49,12 @@ class PostsController < ApplicationController
     else
       @posts = Post.all.reverse
     end
+    respond_to do |format|
+      format.html { render :index }
+      format.atom { render :layout => false }
+      # we want the RSS feed to redirect permanently to the ATOM feed
+      format.rss { redirect_to posts_path(:format => :atom), :status => :moved_permanently }
+    end
   end
 end
 

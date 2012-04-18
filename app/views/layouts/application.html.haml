@@ -54,7 +54,7 @@
               %div{:class => 'feeds'}
                 %div
                   Follow me on Twitter
-                  = link_to image_tag('twitter_16.png', :align => :baseline), 'http://twitter.com/gposton'
+                  = link_to( image_tag('twitter_16.png', :align => :baseline), 'http://twitter.com/gposton', :id => 'twitter')
                 %div
                   Subscribe to my RSS feed
-                  = link_to image_tag('rss_16.png', :align => :baseline), "#{posts_path}.rss"
+                  = link_to( image_tag('rss_16.png', :align => :baseline), 'http://feeds.feedburner.com/ThreeProgrammersWalkedIntoABar', :id => 'rss_feed')

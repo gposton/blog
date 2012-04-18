@@ -10,11 +10,11 @@ Scenario: The user can only comment on a post if he/she is signed in
   When a user visits the home page
   And follows 'Post 1'
   And follows 'Add comment'
-  Then the user should see "You'll need to sign in first."
+  Then the user should see 'You'll need to sign in first.'
   When a normal user logs in with google
   And follows 'Post 1'
   And follows 'Add comment'
   And enters Test Comment in the comment content field
   And clicks 'Create Comment'
   Then the user should be on the post page with id, post_1
-  And the user should see "Test Comment"
+  And the user should see 'Test Comment'

@@ -6,8 +6,8 @@ class Tournament < ActiveRecord::Base
 
   validates_associated :players
   validates_presence_of :date
+  validates_uniqueness_of :date
   validates_presence_of :state
-  validates_uniqueness_of :name
 
   before_create :set_tournament_name
 
@@ -20,6 +20,7 @@ class Tournament < ActiveRecord::Base
   def date_string
     self.date.strftime("%-m/%-d/%Y")
   end
+  alias :date_string :name
 
   def total_pot
     return 0 if self.players.empty?
@@ -34,11 +35,7 @@ class Tournament < ActiveRecord::Base
     Tournament.all.keep_if{|tournament|tournament.date > (Date.today - 7)}
   end
 
-  def set_tournament_name
-    self.name = self.date.strftime("%Y_%m_%d")
-  end
-
   def to_param
-    self.name
+    self.date.strftime("%Y_%m_%d")
   end
 end

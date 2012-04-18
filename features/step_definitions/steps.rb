@@ -26,14 +26,16 @@ When /^clicks '(.*)'/ do |button|
 end
 
 When /^follows '(.*)'/ do |link|
+ #href = find_link(link)[:href] 
+ #visit(href)
  click_link link
 end
 
-Then /^the user should see "(.*)"$/ do |text|
+Then /^the user should see '(.*)'$/ do |text|
   page.should have_content text
 end
 
-Then /^the user should see a link named "(.*)"$/ do |link|
+Then /^the user should see a link named '(.*)'$/ do |link|
   find_link(link).visible?.should be_true
 end
 

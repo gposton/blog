@@ -15,6 +15,7 @@ Blog::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+  match '/feed' => 'news_items#feed', :as => :feed, :defaults => { :format => 'atom' }
   resources :tournaments
 
   #omniauth
