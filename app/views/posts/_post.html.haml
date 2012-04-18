@@ -11,6 +11,5 @@
     = label :post, :tags, 'Tags:'
     %br
     = text_field_tag :tags, @post.tags.collect{|t| t.name}.join(', ')
-    %br
     = form.submit
 

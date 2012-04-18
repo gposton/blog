@@ -45,7 +45,7 @@ class PostsController < ApplicationController
 
   def index
     if params[:tag]
-      @posts = Tag.find_by_name(params[:tag].gsub('_', ' ')).posts.reverse rescue []
+      @posts = Tag.find_by_param(params[:tag]).posts.reverse rescue []
     else
       @posts = Post.all.reverse
     end

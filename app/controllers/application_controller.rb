@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def authenticated?
+    unless current_user
+      flash[:error] = "You'll need to sign in first."
+      redirect_to request.referer ? request.referer : home_path
+      false
+    end
+  end
+
   def authorize
     unless current_user && current_user.admin?
       flash[:error] = "You need to be an admin to do that!"
@@ -27,20 +35,11 @@ class ApplicationController < ActionController::Base
     true
   end
 
-  def authenticated?
-    unless current_user
-      flash[:error] = "You'll need to sign in first."
-      redirect_to request.referer ? request.referer : home_path
-      false
-    end
-  end
-
   def me?
     if current_user.id == params[:id].to_i || current_user.admin?
-      logger.info 'test'
       return true
     else
-      flash[:error] = "You can't look at someone elses stats."
+      flash[:error] = "You can't look at someone elses stuff."
       redirect_to current_user
       return false
     end

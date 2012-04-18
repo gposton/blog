@@ -4,5 +4,5 @@
       = tab.all 'All', posts_path
       - Tag.all.each do |tag|
         -#TODO: load posts in initial sql call
-        = tab.send(tag.name, tag.name.capitalize, "#{posts_path}?tag=#{tag.name.gsub(' ', '_')}") unless tag.posts.empty?
+        = tab.send(tag.name, tag.name.capitalize, "#{posts_path}?tag=#{tag.to_param}") unless tag.posts.empty?
 = render :file => 'layouts/application'
