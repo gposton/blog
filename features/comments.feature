@@ -10,6 +10,7 @@ Scenario: The user can only comment on a post if he/she is signed in
   When a user visits the home page
   And follows 'Post 1'
   Then the user should see 'Sign in to post a comment.'
+  And the 'Post' button should be disabled
   When a normal user logs in with google
   And follows 'Post 1'
   And enters Test Comment in the comment content field

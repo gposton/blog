@@ -42,3 +42,7 @@ end
 Then /^the user should be on the (.*?) page(?: with id, (.*))?$/ do |page, id|
   current_path.should == self.send("#{page}_path", id)
 end
+
+Then /^the '(.*)' button should be disabled$/ do |id|
+  page.should_not have_xpath "//input[@id='#{id}' and @disabled]"
+end
