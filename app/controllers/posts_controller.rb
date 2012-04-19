@@ -41,6 +41,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by_web_title params[:id]
+    @comment = Comment.new
   end
 
   def index

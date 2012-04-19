@@ -1,8 +1,10 @@
-= form_for [@post, @comment], :url => post_comments_path(params['post_id']) do |form|
+= form_for [@post, comment], :url => post_comments_path(:post_id => params['id']) do |form|
   %p
     = label :comment, :content, 'Comment:'
     %br
-    = form.text_area :content
-    %br
-    = form.submit
+    %table
+      %tr
+        - options = current_user.nil? ? {:disabled => 'disabled'} : {}
+        %td{:style => 'align: left;'}= form.text_area :content, options.merge({:style => 'width: 400px; height: 50px'})
+        %td{:style => 'width: 100%;'}= form.submit 'Post', options
 
