@@ -11,7 +11,7 @@ class PictureFrame
       current_photo.displaying = false
       current_photo.save
     end
-    %x{ssh gposton@roush 'pkill chrome'}
-    %x{ssh -X gposton@roush 'DISPLAY=:0.0 nohup google-chrome --kiosk http://www.glennposton.com/picture_frame/show?layout=false > /dev/null 2> /dev/null &'}
+    %x{ssh -o 'ConnectTimeout 2' gposton@roush 'pkill chrome'}
+    %x{ssh -o 'ConnectTimeout 2' -X gposton@roush 'DISPLAY=:0.0 nohup google-chrome --kiosk http://www.glennposton.com/picture_frame/show?layout=false > /dev/null 2> /dev/null &'}
   end
 end
