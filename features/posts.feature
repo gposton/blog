@@ -17,7 +17,8 @@ Scenario: The homepage is a list or posts
 Scenario: Only admin users can create a post
     When a normal user logs in with google
     And visits the new_post page
-    Then the user should see 'You need to be an admin to do that!'
+    Then the user should be on the home page
+    And the user should see 'You need to be an admin to do that!'
     When an admin logs in with google
     And visits the new post page
     And enters Post in the post title field

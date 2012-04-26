@@ -2,6 +2,7 @@ require 'paperclip'
 
 class Photo < ActiveRecord::Base
   belongs_to :uploaded_by, :foreign_key => 'user_id', :class_name => 'User'
+  belongs_to :album
 
   validates_presence_of             :user_id
   validates_attachment_presence     :image

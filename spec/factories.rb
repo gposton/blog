@@ -28,4 +28,8 @@ FactoryGirl.define do
   factory :post do
     title 'title'
   end
+
+  factory :album do
+    name 'MyAlbum'
+  end
 end

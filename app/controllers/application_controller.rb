@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def authorize
     unless current_user && current_user.admin?
       flash[:error] = "You need to be an admin to do that!"
-      redirect_to request.referer ? request.referer : home_path
+      redirect_to (request.referer ? request.referer : home_path)
       false
     end
   end

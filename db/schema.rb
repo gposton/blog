@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418044024) do
+ActiveRecord::Schema.define(:version => 20120419181705) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -19,8 +25,8 @@ ActiveRecord::Schema.define(:version => 20120418044024) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
@@ -28,14 +34,15 @@ ActiveRecord::Schema.define(:version => 20120418044024) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "photos", :force => true do |t|
-    t.string   "user_id"
+    t.integer  "user_id",            :limit => 255
     t.boolean  "displaying"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "album_id"
   end
 
   create_table "player_results", :force => true do |t|
@@ -44,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20120418044024) do
     t.integer  "buy_in",        :default => 0
     t.integer  "winnings",      :default => 0
     t.integer  "finish",        :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "players", :force => true do |t|
@@ -54,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20120418044024) do
     t.integer  "buy_in",        :default => 20
     t.integer  "winnings",      :default => 0
     t.integer  "finish",        :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "posts", :force => true do |t|
@@ -73,20 +80,20 @@ ActiveRecord::Schema.define(:version => 20120418044024) do
 
   create_table "states", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tags", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tournaments", :force => true do |t|
     t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "state_id",   :default => 1
   end
 
@@ -96,8 +103,8 @@ ActiveRecord::Schema.define(:version => 20120418044024) do
     t.string   "name"
     t.string   "email"
     t.boolean  "admin",          :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.boolean  "special_access", :default => false
   end
 

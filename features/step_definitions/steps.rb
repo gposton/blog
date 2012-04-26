@@ -31,8 +31,21 @@ When /^follows '(.*)'/ do |link|
  click_link link
 end
 
+When /^uploads a photo$/ do
+  attach_file('photo_image', File.join(Rails.root, 'public', 'images', 'on_the_rock.jpeg'))
+  click_button 'Upload'
+end
+
+When /^selects "([^"]*)" from "([^"]*)"$/ do |option, field|
+  select(option, :from => field)
+end
+
 Then /^the user should see '(.*)'$/ do |text|
   page.should have_content text
+end
+
+Then /^the user should not see '(.*)'$/ do |text|
+  page.should_not have_content text
 end
 
 Then /^the user should see a link named '(.*)'$/ do |link|
@@ -45,4 +58,14 @@ end
 
 Then /^the '(.*)' button should be disabled$/ do |id|
   page.should_not have_xpath "//input[@id='#{id}' and @disabled]"
+end
+
+Then /^the user should see the photo(?: in (.*))?$/ do |album_name|
+  xpath = album_name ? "//div[@id='#{album_name}']/spam/img[@alt='On_the_rock']" : "//img[@alt='On_the_rock']"
+  page.should have_xpath "//img[@alt='On_the_rock']"
+end
+
+Then /^the user should not see the photo$/ do
+  xpath = "//img[@alt='On_the_rock']"
+  page.should_not have_xpath xpath
 end

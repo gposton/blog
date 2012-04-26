@@ -1,8 +1,10 @@
 <%
 rerun = File.file?('rerun.txt') ? IO.read('rerun.txt') : ""
-rerun_opts = rerun.to_s.strip.empty? ? "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} features" : "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun}"
-std_opts = "--strict --tags ~@wip"
+rerun_opts = rerun.to_s.strip.empty? ? "--format pretty features" : "--format pretty #{rerun}"
+std_opts = "--strict --tags ~@wip --format pretty"
 %>
 default: --drb <%= std_opts %> features
-wip: --drb --tags @wip:3 --wip features
-rerun: --drb <%= rerun_opts %> --format rerun --out rerun.txt --strict --tags ~@wip
+#wip: --drb --tags @wip:3 --wip features
+#rerun: --drb <%= rerun_opts %> --format rerun --out rerun.txt --strict --tags ~@wip
+wip: --drb -tags @wip:3 --wip features
+autotest: --drb --color --format pretty --strict

@@ -4,7 +4,6 @@ Blog::Application.routes.draw do
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
-  match 'picture_frame/show' => 'picture_frame#show', :as => 'picture_frame_show'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
@@ -16,6 +15,12 @@ Blog::Application.routes.draw do
     resources :comments
   end
   match '/feed' => 'news_items#feed', :as => :feed, :defaults => { :format => 'atom' }
+
+  resources :albums do
+    resources :photos
+  end
+  match 'picture_frame/show' => 'picture_frame#show', :as => 'picture_frame_show'
+
   resources :tournaments
 
   #omniauth
