@@ -1,0 +1,17 @@
+%div{:style => 'text-align: center'}
+  -#- if current_user.special_access?
+  %p{:class => 'info'}
+    Upload a picture and it will be displayed on my 'in-home' digital picture frame.
+  -#- else
+    %p{:class => 'info'}
+      User's are allowed to upload one picture each.  This picture will be displayed on my 'in-home' digital picture frame.
+  = form_for [album, photo], :html => {:multipart => true} do |form|
+    %table{:style => 'margin-left:auto; margin-right:auto;'}
+      - if current_user && current_user.admin?
+        %tr
+          %td= label :album, 'Album:'
+          %td= form.select :album_id, options_from_collection_for_select(Album.all, "id", "name")
+      %tr
+        %td= label :image, 'Photo:'
+        %td= form.file_field :image
+        %td= form.submit 'Upload'

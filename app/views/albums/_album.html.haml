@@ -1,0 +1,6 @@
+= form_for album do |form|
+  %div{:style => 'text-align: center'}
+    %span= label :album, :name, 'Name:'
+    %span= form.text_field :name
+    %span= form.submit 'Create album'
+

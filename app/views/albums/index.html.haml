@@ -1,0 +1,9 @@
+-if current_user && current_user.admin?
+  = render :partial => 'album', :locals => {:album => Album.new}
+= render :partial => 'photos/photo', :locals => {:album => Album.find_or_create_by_name('New'), :photo => Photo.new}
+-@albums.each do |album|
+  %div{:id => "#{album.name}"}
+    %h1=album.name
+    %hr
+    -album.photos.each do |photo|
+      %span= link_to image_tag(photo.image.url(:thumb)), album_photo_path(:album_id => album.id, :id => photo.id)
