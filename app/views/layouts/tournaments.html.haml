@@ -1,0 +1,10 @@
+- content_for :subtabs do
+  %span
+    = tabs_tag :namespace => :subtabs do |tab|
+      - unless current_user.poker_player?
+        = tab.register 'Register', poker_registration_path
+      - else
+        = tab.register 'Unsubscribe', toggle_poker_player_user_path(current_user)
+        = tab.all 'All tournaments', tournaments_path
+        = tab.my_tournaments 'My tournaments', current_user
+= render :file => 'layouts/application'

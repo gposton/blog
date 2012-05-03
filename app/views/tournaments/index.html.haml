@@ -1,0 +1,15 @@
+- unless current_user.poker_player?
+  %p{:class => 'center'}
+    = "Click "
+    = link_to'Register', poker_registration_path
+    = " to view tournament information and receive poker updates at #{current_user.email}"
+- else
+  %div{:class => 'center'}= image_tag tournament_pot_size_graph(@tournaments)
+  %p{:class => 'center'}= "Click the tournament date below to see the results or RSVP."
+  - @tournaments.each do |tournament|
+    %h1
+      %span= link_to tournament.date_string, (tournament.state.closed?) ? tournament : edit_tournament_path(tournament)
+    %hr
+    %span= "Total pot: #{tournament.total_pot}"
+    %span= " | Game status: #{tournament.state.name}"
+    %span= " | Winner: #{tournament.winner.name}" if tournament.state.closed?

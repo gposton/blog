@@ -1,0 +1,8 @@
+=form_for @user do |form|
+  %p
+    =label :email, 'Email:'
+    =form.text_field :email
+  %p
+    =form.check_box :poker_player
+    =label :poker_player, "I play poker"
+  %p=form.submit 'Register'
