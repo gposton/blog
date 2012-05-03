@@ -1,7 +1,5 @@
 = form_for [@post, comment], :url => post_comments_path(:post_id => params['id']) do |form|
   %p
-    = label :comment, :content, 'Comment:'
-    %br
     %table
       %tr
         - options = current_user.nil? ? {:disabled => 'disabled'} : {}

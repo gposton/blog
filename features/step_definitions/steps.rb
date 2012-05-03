@@ -14,7 +14,12 @@ When /^a[n]? (.*) logs in with (.*)$/ do |user_type, oauth_provider|
   visit(home_path)
   OmniAuth.config.add_mock(oauth_provider, {:uid => '12345'})
   click_link("auth_#{oauth_provider}")
-  User.last.update_attribute(:admin, user_type.include?('admin'))
+  case user_type
+  when 'admin'
+    User.last.update_attribute(:admin, user_type.include?('admin'))
+  when 'user with an email address'
+    User.last.update_attribute(:email, 'me@me.com')
+  end
 end
 
 When /^enters (.*) in the (.*) field$/ do |text, field|
@@ -25,9 +30,7 @@ When /^clicks '(.*)'/ do |button|
  click_button button
 end
 
-When /^follows '(.*)'/ do |link|
- #href = find_link(link)[:href] 
- #visit(href)
+When /^(?:the user )?follows '(.*)'/ do |link|
  click_link link
 end
 
@@ -38,6 +41,10 @@ end
 
 When /^selects "([^"]*)" from "([^"]*)"$/ do |option, field|
   select(option, :from => field)
+end
+
+When /^checks '(.*)'$/ do |field|
+  check(field)
 end
 
 Then /^the user should see '(.*)'$/ do |text|

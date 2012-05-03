@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   helper_method :current_user
 
-  def current_user
+  def current_user(refresh = false)
+    @current_user = nil if refresh
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 

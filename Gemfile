@@ -25,6 +25,7 @@ gem 'mongrel', '1.2.0.pre2'
 gem 'calendar_date_select', :git => 'git://github.com/paneq/calendar_date_select.git'
 gem 'googlecharts'
 gem 'prototype-rails'
+gem 'newrelic_rpm'
 
 # Gems used only for assets and not required
 # in production environments by default.

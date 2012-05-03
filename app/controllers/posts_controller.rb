@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by_web_title params[:id]
+    @post = Post.includes(:comments => :user).find_by_web_title params[:id]
     @comment = Comment.new
   end
 

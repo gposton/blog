@@ -10,7 +10,7 @@
     %table{:class => 'main'}
       %tr
         %td
-          %div#header{:class => 'header'}
+          %div#header{:id => 'header', :class => 'header'}
             - if flash[:notice]
               %span{:class => 'notice'}
                 = flash[:notice]
@@ -25,7 +25,7 @@
                     = link_to "Sign out", signout_path
                 - else
                   %div#sign_in{:class => 'sign_in'}
-                    Sign in with 
+                    Sign in with
                     %a{:href => '/auth/google', :id => 'auth_google'}
                       = image_tag('google_32.png', :align => :absmiddle)
                     -#%a{:href => '/auth/facebook', :id => 'auth_facebook'}
@@ -49,7 +49,6 @@
       %tr
         %td
           %div#content{:class => 'content'}
-            = yield
             - if current_tab == :blog
               %div{:class => 'feeds'}
                 %div
@@ -58,3 +57,4 @@
                 %div
                   Subscribe to my RSS feed
                   = link_to( image_tag('rss_16.png', :align => :baseline), 'http://feeds.feedburner.com/ThreeProgrammersWalkedIntoABar', :id => 'rss_feed')
+            = yield
