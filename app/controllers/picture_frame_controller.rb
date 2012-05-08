@@ -7,4 +7,9 @@ class PictureFrameController < ApplicationController
     @photo = PictureFrame.currently_displayed
     render :show, :layout => false
   end
+
+  def update
+    PictureFrame.replace_displayed_with(Photo.find params[:id])
+    redirect_to albums_path
+  end
 end

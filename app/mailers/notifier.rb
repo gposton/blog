@@ -13,10 +13,10 @@ class Notifier < ActionMailer::Base
     mail(:subject => '[Blog] New photo', :content_type => 'text/html' )
   end
 
-  def new_tournament(tournament, recent_tournaments)
+  def new_tournament(tournament, recent_tournaments, to)
     @tournament = tournament
     @recent_tournaments = recent_tournaments
-    mail(:to => User.all.collect{|user|user.email}.join(', '), :from => 'Poker <gposton1040@gmail.com>', :subject => 'Poker!!!', :content_type => 'text/html')
+    mail(:to => to.join(','), :from => 'Poker <gposton1040@gmail.com>', :subject => 'Poker!!!', :content_type => 'text/html')
   end
 
   def error(message, user)

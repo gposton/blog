@@ -12,7 +12,8 @@ Blog::Application.routes.draw do
   resources :albums do
     resources :photos
   end
-  match 'picture_frame/show' => 'picture_frame#show', :as => 'picture_frame_show'
+  match 'picture_frame' => 'picture_frame#show', :as => 'picture_frame'
+  match 'picture_frame/:id/update' => 'picture_frame#update', :as => 'picture_frame_update'
 
   resources :tournaments
 

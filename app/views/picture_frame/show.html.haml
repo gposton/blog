@@ -1,0 +1,7 @@
+%html
+  %head
+    %title= @post ? @post.title : 'Three programmers walked into a bar...'
+    %link{:rel => "shortcut icon", :href => "/images/favicon.ico"}
+    = stylesheet_link_tag("picture_frame")
+  %body
+    = render :partial => 'picture_frame/show', :locals => {:size => :large}

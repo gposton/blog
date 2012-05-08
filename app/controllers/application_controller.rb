@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def current_user(refresh = false)
     @current_user = nil if refresh
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find session[:user_id] if session[:user_id]
   end
 
   def authenticated?
@@ -44,5 +44,9 @@ class ApplicationController < ActionController::Base
       redirect_to current_user
       return false
     end
+  end
+
+  def poker_players
+    User.all(:conditions => {:poker_player => true})
   end
 end

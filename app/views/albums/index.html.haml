@@ -1,6 +1,12 @@
--if current_user && current_user.admin?
-  = render :partial => 'album', :locals => {:album => Album.new}
-= render :partial => 'photos/photo', :locals => {:album => Album.find_or_create_by_name('New'), :photo => Photo.new}
+%table{:style => 'width: 100%'}
+  %tr
+    %td
+      -if current_user && current_user.admin?
+        = render :partial => 'album', :locals => {:album => Album.new}
+      = render :partial => 'photos/photo', :locals => {:album => Album.find_or_create_by_name('New'), :photo => Photo.new}
+    %td
+      %p{:class => 'info'}='Currently displayed on my pictureframe'
+      = render :partial => 'picture_frame/show', :locals => {:size => :thumb}
 -@albums.each do |album|
   %div{:id => "#{album.name}"}
     %h1=album.name

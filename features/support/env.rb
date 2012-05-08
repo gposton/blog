@@ -10,6 +10,7 @@ require 'spork'
 Spork.prefork do
   require 'cucumber/rails'
   require "factory_girl/step_definitions"
+  require 'cucumber/rspec/doubles'
 
 
   # Short circuits omniauth

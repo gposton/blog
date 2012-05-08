@@ -1,0 +1,7 @@
+= form_for @tournament do |form|
+  %p
+    = label :tournament, :date, 'Tournament date:'
+    %br
+    = calendar_date_select_tag "tournament[date]", "", :popup => :force
+    %br
+    = form.submit

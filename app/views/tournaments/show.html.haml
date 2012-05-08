@@ -1,0 +1,16 @@
+%h1
+  %span= @tournament.date_string
+  %span{:class => 'right'}= "Pot: $#{@tournament.total_pot}"
+%hr
+%table{:id => 'player_results', :class => 'player_results'}
+  %tr
+    %th= 'Name'
+    %th= 'Buy in'
+    %th= 'Winnings'
+    %th= 'Finish'
+  - @tournament.players.sort{|a,b|a.finish <=> b.finish}.each do |player|
+    %tr{:class => cycle('odd','even')}
+      %td= current_user.admin? ? link_to(player.user.name, player.user) : player.user.name
+      %td= player.buy_in
+      %td= player.winnings
+      %td= player.finish

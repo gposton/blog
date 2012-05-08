@@ -16,9 +16,11 @@ When /^a[n]? (.*) logs in with (.*)$/ do |user_type, oauth_provider|
   click_link("auth_#{oauth_provider}")
   case user_type
   when 'admin'
-    User.last.update_attribute(:admin, user_type.include?('admin'))
+    User.last.update_attribute(:admin, true)
   when 'user with an email address'
     User.last.update_attribute(:email, 'me@me.com')
+  when 'poker player'
+    User.last.update_attribute(:poker_player, true)
   end
 end
 
@@ -26,8 +28,12 @@ When /^enters (.*) in the (.*) field$/ do |text, field|
   fill_in(field.gsub(' ', '_'), :with => text)
 end
 
-When /^clicks '(.*)'/ do |button|
+When /^clicks '(.*)'$/ do |button|
  click_button button
+end
+
+When /^clicks the '(.*)' image$/ do |alt|
+  find(:xpath, "//img[@alt = '#{alt}']").click()
 end
 
 When /^(?:the user )?follows '(.*)'/ do |link|
@@ -36,11 +42,15 @@ end
 
 When /^uploads a photo$/ do
   attach_file('photo_image', File.join(Rails.root, 'public', 'images', 'on_the_rock.jpeg'))
-  click_button 'Upload'
-end
+  click_button 'Upload' 
+end 
 
 When /^selects "([^"]*)" from "([^"]*)"$/ do |option, field|
   select(option, :from => field)
+end
+
+When /^selects "([^"]*)"$/ do |option|
+  select(option)
 end
 
 When /^checks '(.*)'$/ do |field|

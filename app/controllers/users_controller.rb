@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     @user.attributes = params[:user]
-    puts @user.email
     if @user.save
       flash[:notice] = "You'll #{@user.poker_player? ? 'now' : 'no longer'} receive poker updates at #{current_user(true).email}."
       redirect_to tournaments_path

@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
   set_tab :poker
 
   before_filter :authenticated?
-  before_filter :authorize, :only => :new
+  before_filter :authorize, :only => [:new, :create]
 
   def new
     @tournament = Tournament.new
@@ -11,7 +11,7 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new params[:tournament]
     if @tournament.save
-      Notifier.deliver_new_tournament(@tournament, Tournament.recent_tournaments)
+      Notifier.new_tournament(@tournament, Tournament.last_weeks_games, poker_players.collect{|player| player.email}).deliver
       redirect_to edit_tournament_path @tournament
     else
       render :action => 'new'
@@ -19,7 +19,7 @@ class TournamentsController < ApplicationController
   end
 
   def update
-    @tournament = Tournament.find_by_name params[:id]
+    @tournament = Tournament.find_by_param params[:id]
     @tournament.attributes = params[:tournament]
     if @tournament.save
       redirect_to @tournament.state.closed? ? @tournament : (edit_tournament_path @tournament)
@@ -29,14 +29,14 @@ class TournamentsController < ApplicationController
   end
 
   def edit
-    @tournament = Tournament.find_by_name params[:id]
+    @tournament = Tournament.find_by_param params[:id]
   end
 
   def show
-    @tournament = Tournament.find_by_name params[:id]
+    @tournament = Tournament.includes(:players).find_by_param params[:id]
   end
 
   def index
-    @tournaments = current_user.poker_player? ? Tournament.all : []
+    @tournaments = current_user.poker_player? ? Tournament.includes(:players, :state).all : []
   end
 end

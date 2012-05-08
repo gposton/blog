@@ -1,1 +1,4 @@
-%div{:style => 'text-align: center'}= image_tag(@photo.image.url(:medium))
+%div{:style => 'text-align: center'}
+  = link_to 'Display this image on my in-home picture frame', picture_frame_update_path(:id => @photo.id)
+  %br
+  = image_tag(@photo.image.url(:medium))

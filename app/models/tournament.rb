@@ -35,4 +35,8 @@ class Tournament < ActiveRecord::Base
   def to_param
     self.date.strftime("%Y_%m_%d")
   end
+
+  def self.find_by_param(param)
+    Tournament.find_by_date Date.parse(param.gsub('_','-'))
+  end
 end
