@@ -1,3 +1,5 @@
+World(ShowMeTheCookies)
+
 Given /^the following posts have been created$/ do |table|
   table.hashes.map do |hash|
     post = Post.create(:title => hash['Title'], :content => hash['Content'])
@@ -10,17 +12,61 @@ When /^.*visits the (.*?) page$/ do |page|
 end
 
 When /^a[n]? (.*) logs in with (.*)$/ do |user_type, oauth_provider|
-  click_link('Sign out') rescue
   visit(home_path)
-  OmniAuth.config.add_mock(oauth_provider, {:uid => '12345'})
-  click_link("auth_#{oauth_provider}")
+  click_link('Sign out') rescue
+  FUNCTIONAL_USERS # Not sure why, but if I take this line out, I randomly get nul values for 'user' in the next step
+  user = FUNCTIONAL_USERS[user_type]
+  if Capybara.current_driver == Capybara.javascript_driver
+    visit 'http://www.google.com'
+    # clear google oauth session
+    delete_cookie 'GALX'
+    delete_cookie 'GAPS'
+    delete_cookie 'LSID'
+    delete_cookie 'LSOSID'
+    expire_cookies
+
+    visit(home_path)
+    click_link("auth_#{oauth_provider}")
+    step "signs in to google with #{user[:email]} and #{user[:pass]} and allows access"
+  else
+    visit(home_path)
+    OmniAuth.config.add_mock(oauth_provider, {:uid => user[:uid], :info => {:name => user[:name]}})
+    click_link("auth_#{oauth_provider}")
+  end
   case user_type
   when 'admin'
-    User.last.update_attribute(:admin, true)
+    User.find_by_name(user[:name]).update_attributes(:poker_player => true, :admin => true)
   when 'user with an email address'
-    User.last.update_attribute(:email, 'me@me.com')
+    User.find_by_name(user[:name]).update_attribute(:email, 'me@me.com')
   when 'poker player'
-    User.last.update_attribute(:poker_player, true)
+    User.find_by_name(user[:name]).update_attributes(:poker_player => true)
+  when 'normal user'
+    User.find_by_name(user[:name]).update_attributes(:email => nil)
+  end
+end
+
+When /^.*signs in to google with (.*) and (.*) and allows access$/ do |email, pass|
+  click_link 'change_user_link' rescue # In case another user is already signed in.
+  sleep 1
+
+  # Sign in
+  begin
+    fill_in 'Email', :with => email
+    fill_in 'Passwd', :with => pass
+    uncheck 'PersistentCookie'
+    click_button 'signIn'
+  rescue
+    # We don't really care about errors because if a user is already signed in
+    # this should be skipped.
+  end
+
+  # Allow access
+  begin
+    uncheck 'remember_choices'
+    click_button 'approve_button'
+  rescue
+    # We don't really care about errors because if a user has already allowed access
+    # this should be skipped.
   end
 end
 
@@ -34,6 +80,11 @@ end
 
 When /^clicks the '(.*)' image$/ do |alt|
   find(:xpath, "//img[@alt = '#{alt}']").click()
+end
+
+When /^picks the (.*) from the calendar$/ do |date|
+  date = date.gsub(/[^0-9]/, '') #remove everything except for numbers
+  find(:xpath, "//div[text()='#{date}']").click()
 end
 
 When /^(?:the user )?follows '(.*)'/ do |link|
