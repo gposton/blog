@@ -39,7 +39,7 @@ When /^a[n]? (.*) logs in with (.*)$/ do |user_type, oauth_provider|
   when 'user with an email address'
     User.find_by_name(user[:name]).update_attribute(:email, 'me@me.com')
   when 'poker player'
-    User.find_by_name(user[:name]).update_attributes(:poker_player => true)
+    User.find_by_name(user[:name]).update_attributes(:poker_player => true, :id => 1)
   when 'normal user'
     User.find_by_name(user[:name]).update_attributes(:email => nil)
   end
@@ -110,6 +110,16 @@ end
 
 Then /^the user should see '(.*)'$/ do |text|
   page.should have_content text
+end
+
+Then /^the user should (not )?see '(.*)' in the row for user (.*)$/ do |present, text, user|
+  present = present.nil?
+  xpath = "//tr[@id='result_#{user}']"
+  if present
+    page.find(:xpath, xpath).should have_content text
+  else
+    page.find(:xpath, xpath).should_not have_content text
+  end
 end
 
 Then /^the user should not see '(.*)'$/ do |text|

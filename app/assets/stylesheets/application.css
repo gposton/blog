@@ -224,3 +224,7 @@ h1 a {
 .green {
   color: green;
 }
+
+.strike {
+  text-decoration: line-through;
+}

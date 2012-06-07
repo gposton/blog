@@ -5,7 +5,7 @@
         = "Posted #{time_ago_in_words(@post.updated_at)} ago"
       %h1{:style => 'margin: 0 0 0 0;'}
         = @post.title
-= textilize(@post.content)
+!= textilize(@post.content)
 %div#comments
   = render :partial => 'comments/index', :locals => {:comments => @post.comments}
 

@@ -1,7 +1,4 @@
 FactoryGirl.define do
-  factory :state do
-    name 'scheduled'
-  end
 
   factory :user do
     name  'Joe'
@@ -11,7 +8,6 @@ FactoryGirl.define do
 
   factory :tournament do
     date {Date.new(2001,1,1)}
-    state
   end
 
   factory :player do

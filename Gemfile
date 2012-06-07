@@ -26,12 +26,14 @@ gem 'calendar_date_select', :git => 'git://github.com/paneq/calendar_date_select
 gem 'googlecharts'
 gem 'prototype-rails'
 gem 'newrelic_rpm'
+gem 'encryptor'
+gem 'best_in_place'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   #gem 'sass-rails',   '~> 3.1.5'
-  #gem 'coffee-rails', '~> 3.1.1'
+  gem 'coffee-rails'
   #gem 'uglifier', '>= 1.0.3'
 end
 
@@ -50,6 +52,7 @@ gem 'capistrano'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development do
+  gem 'guard-ctags-bundler'
 end
 
 group :test do
@@ -68,4 +71,5 @@ group :test do
   gem 'launchy'
   gem 'autotest-rails'
   gem 'autotest-growl'
+  gem 'show_me_the_cookies'
 end

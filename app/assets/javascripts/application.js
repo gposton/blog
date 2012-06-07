@@ -6,6 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.purr
+//= require best_in_place
 //
 // Reference: http://rubydoc.info/gems/prototype-rails/3.2.0/frames
 //= require prototype

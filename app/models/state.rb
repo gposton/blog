@@ -1,3 +1,4 @@
+#DEPRECATED
 class State < ActiveRecord::Base
   def closed?
     self.name == 'closed'

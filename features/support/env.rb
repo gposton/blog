@@ -11,7 +11,7 @@ Spork.prefork do
   require 'cucumber/rails'
   require "factory_girl/step_definitions"
   require 'cucumber/rspec/doubles'
-
+  require 'yaml'
 
   # Short circuits omniauth
   # https://github.com/intridea/omniauth/wiki/Integration-Testing
@@ -23,6 +23,14 @@ Spork.prefork do
   # steps to use the XPath syntax.
   Capybara.default_selector = :css
   Capybara.app_host = 'http://localhost:3000'
+
+  # Functional users
+  CONFIG = YAML.load_file '/etc/blog/blog.conf'
+  PASS = Encryptor.decrypt("\x8A2\x89\x9A\xB1\xC2\xD12<\xBAj\xC5\x03D\x15R", :key => CONFIG['salt'])
+  FUNCTIONAL_USERS = { 'normal user'                => {:name => 'Normal User',  :email => 'blogfunctional1@gmail.com', :pass => PASS, :uid => '1'},
+                       'admin'                      => {:name => 'Admin User',   :email => 'blogfunctional2@gmail.com', :pass => PASS, :uid => '2'},
+                       'poker player'               => {:name => 'Poker Player', :email => 'blogfunctional3@gmail.com', :pass => PASS, :uid => '3'},
+                       'user with an email address' => {:name => 'Gots Email',   :email => 'blogfunctional4@gmail.com', :pass => PASS, :uid => '4'}}
 end
 
 Spork.each_run do

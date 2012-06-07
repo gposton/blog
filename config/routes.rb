@@ -15,7 +15,11 @@ Blog::Application.routes.draw do
   match 'picture_frame' => 'picture_frame#show', :as => 'picture_frame'
   match 'picture_frame/:id/update' => 'picture_frame#update', :as => 'picture_frame_update'
 
-  resources :tournaments
+  resources :tournaments, :except => [:edit, :update] do
+    get 'rsvp', :on => :member
+  end
+
+  resources :players, :only => :update
 
   #omniauth
   match "/auth/:provider/callback" => 'sessions#create'

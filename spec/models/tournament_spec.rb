@@ -15,10 +15,6 @@ describe Tournament do
     FactoryGirl.build(:tournament, :date => nil).should_not be_valid
   end
 
-  it 'validates that a state is present' do
-    FactoryGirl.build(:tournament, :state => nil).should_not be_valid
-  end
-
   it 'determines if a user is already in the tournament' do
     player = FactoryGirl.create(:player)
     @tournament.has_player?(player.user).should be_false

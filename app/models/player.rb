@@ -11,4 +11,8 @@ class Player < ActiveRecord::Base
   def loss?
     net < 0
   end
+
+  def name
+    self.user.name
+  end
 end

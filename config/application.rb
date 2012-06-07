@@ -5,8 +5,8 @@ require 'rails/all'
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+  #If you want your assets lazily compiled in production, use this line
+  #Bundler.require(:default, :assets, Rails.env)
 end
 
 module Blog
@@ -44,5 +44,17 @@ module Blog
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    CONFIG = YAML.load_file '/etc/blog/blog.conf'
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => 'baci.lindsaar.net',
+      :user_name            => Encryptor.decrypt("\xB2[_\xED\xE2\v&\xE3\xC7hw\xAF\x1E\x80\xE3\xC4\xF9H16\xA3\x98\x81c}b@<\x9B\xD2\xAB=" , :key => CONFIG['salt']),
+      :password             => Encryptor.decrypt("V\x9E\xF7A\x10\x8A<\x17\x00\x90\x11\x90]W)2" , :key => CONFIG['salt']),
+      :authentication       => 'plain',
+      :enable_starttls_auto => true  }
   end
 end

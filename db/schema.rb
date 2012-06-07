@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503025947) do
+ActiveRecord::Schema.define(:version => 20120524032354) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20120503025947) do
     t.integer  "finish",        :default => 0
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.boolean  "no_show"
   end
 
   create_table "posts", :force => true do |t|
@@ -78,12 +79,6 @@ ActiveRecord::Schema.define(:version => 20120503025947) do
     t.integer "tag_id",  :null => false
   end
 
-  create_table "states", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "tags", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -92,9 +87,8 @@ ActiveRecord::Schema.define(:version => 20120503025947) do
 
   create_table "tournaments", :force => true do |t|
     t.date     "date"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "state_id",   :default => 1
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

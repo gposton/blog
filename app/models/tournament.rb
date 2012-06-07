@@ -1,12 +1,10 @@
 class Tournament < ActiveRecord::Base
   has_many :players
-  belongs_to :state
 
   accepts_nested_attributes_for :players, :allow_destroy => true
 
   validates_associated :players
   validates_presence_of :date
-  validates_presence_of :state
 
   default_scope :order => 'date DESC'
 
@@ -22,6 +20,14 @@ class Tournament < ActiveRecord::Base
   def total_pot
     return 0 if self.players.empty?
     self.players.collect{|player|player.buy_in}.inject(:+)
+  end
+
+  def today?
+    self.date == Date.today
+  end
+
+  def over?
+    self.date < Date.today
   end
 
   def winners
