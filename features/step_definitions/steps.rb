@@ -73,8 +73,11 @@ end
 When /^(?:.*)enters (.*) in the (.*) field$/ do |text, field|
   field = field.gsub(' ', '_')
   fill_in(field, :with => text)
-  # This was added to submit the best in place fields after entering text/updates
-  find_field(field).native.send_key(:tab) rescue nil
+  # This was added to submit the best in place fields and wait for the page to update after entering text/updates
+  if find(:xpath, "//form[@class='form_in_place']/input[@name='#{field}']")
+    find_field(field).native.send_key(:tab) rescue nil
+    sleep 0.5
+  end rescue nil
 end
 
 When /^clicks '(.*)'$/ do |button|
