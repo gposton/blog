@@ -1,0 +1,22 @@
+%h1
+  %span= @tournament.date_string
+  %span{:class => 'right', :id => 'total_pot'}
+  %span{:class => 'right'}= 'Pot: $'
+%hr
+-#- form_for @tournament do |form|
+  -#= form.hidden_field 'date'
+  -#= form.collection_select(:state_id, State.all, :id, :name) if current_user.admin?
+  -#- if @tournament.state.scheduled?
+    -#= add_me_link(@tournament.id, form) unless @tournament.has_player? current_user
+    -#= add_user_link(@tournament.id, form) if current_user.admin?
+  -#%table{:id => 'player_results', :class => 'player_results'}
+    -#%tr
+      -#%th= 'Name'
+      -#- unless @tournament.state.scheduled?
+        -#%th= 'Buy in'
+        -#%th= 'Winnings'
+        -#%th= 'Finish'
+    -#- @tournament.player_results.each do |player_result|
+      -#= render :partial => 'player_result', :locals => {:form => form}, :object => player_result
+  -#= form.submit
+-#= javascript_tag update_page{|page|update_total_pot page}
