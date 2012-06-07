@@ -3,14 +3,10 @@ Feature: Poker
   The users
   Should be able to subscribe to see each game's results
 
-@javascript
 Scenario: Create a new tournament
     When an admin logs in with google
     And visits the new_tournament page
-    And clicks the 'Calendar' image
-    And selects "January"
-    And selects "2011"
-    And picks the 1st from the calendar
+    And enters 2011-01-01 in the tournament_date field
     And clicks 'Create Tournament'
     Then the user should see '1/1/2011'
 
@@ -83,7 +79,6 @@ Scenario: A user can see a list of all tournaments
     #And the user should see '10'
     #And the user should see '2'
 
-@javascript
 Scenario: Only admins can create new tournaments
     When a normal user logs in with google
     And visits the new_tournament page

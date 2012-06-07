@@ -22,9 +22,7 @@ gem 'whenever'
 # https://github.com/intridea/omniauth/issues/43
 gem 'mongrel', '1.2.0.pre2'
 # Install reference: http://stackoverflow.com/questions/3979495/using-calendar-date-select-with-rails-3
-gem 'calendar_date_select', :git => 'git://github.com/paneq/calendar_date_select.git'
 gem 'googlecharts'
-gem 'prototype-rails'
 gem 'newrelic_rpm'
 gem 'encryptor'
 gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
@@ -33,7 +31,7 @@ gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 # in production environments by default.
 group :assets do
   #gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails'
+  #gem 'coffee-rails'
   #gem 'uglifier', '>= 1.0.3'
 end
 
