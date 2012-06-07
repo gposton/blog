@@ -2,6 +2,6 @@
   %p
     = label :tournament, :date, 'Tournament date:'
     %br
-    = calendar_date_select_tag "tournament[date]", "", :popup => :force
+    = form.text_field :date, :class => 'datepicker'
     %br
     = form.submit

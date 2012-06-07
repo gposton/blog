@@ -27,7 +27,7 @@ gem 'googlecharts'
 gem 'prototype-rails'
 gem 'newrelic_rpm'
 gem 'encryptor'
-gem 'best_in_place'
+gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

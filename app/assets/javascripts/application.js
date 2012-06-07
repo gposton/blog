@@ -6,13 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.purr
 //= require best_in_place
-//
-// Reference: http://rubydoc.info/gems/prototype-rails/3.2.0/frames
-//= require prototype
-//= require prototype_ujs
-//= require effects
-//= require dragdrop
-//= require controls
 //= require_tree .

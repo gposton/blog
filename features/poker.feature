@@ -92,10 +92,10 @@ Scenario: Only admins can create new tournaments
 Scenario: A user can RSVP to a tournament
     Given the following tournaments exist:
         | Date       | id |
-        | 01-01-2011 | 1  |
+        | 01-01-2050 | 1  |
     When a poker player logs in with google
     And follows 'Poker'
-    And follows '1/1/2011'
+    And follows '1/1/2050'
     And follows 'I'll be there'
     Then the user should see 'Poker Player'
     And the user should see 'Can't make it'

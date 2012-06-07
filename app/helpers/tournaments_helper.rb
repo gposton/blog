@@ -8,7 +8,7 @@ module TournamentsHelper
   end
 
   def result(player, field)
-    (current_user.admin? || player.user_id == current_user.id) ? best_in_place(player, field.to_sym) : player.send(field)
+    best_in_place_if (current_user.admin? || player.user_id == current_user.id), player, field.to_sym
   end
 
   def show_results?(player)
