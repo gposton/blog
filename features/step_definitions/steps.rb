@@ -75,7 +75,7 @@ When /^(?:.*)enters (.*) in the (.*) field$/ do |text, field|
   fill_in(field, :with => text)
   # This was added to submit the best in place fields and wait for the page to update after entering text/updates
   if find(:xpath, "//form[@class='form_in_place']/input[@name='#{field}']")
-    find_field(field).native.send_key(:tab) rescue nil
+    find_field(field).native.send_key(:tab)
     sleep 0.5
   end rescue nil
 end

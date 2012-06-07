@@ -1,0 +1,18 @@
+%div
+  %span= "You have played in #{pluralize @user.poker_results.count, 'tournament'}"
+  %span{:class => :right}= "Net winnings: #{@user.net_winnings}"
+%br
+%div{:class => 'center'}= image_tag winnings_graph(@user.poker_results.reverse)
+%br
+%div{:class => 'center'}= image_tag cumulative_winnings_graph(@user.poker_results.reverse)
+- @user.poker_results.each do |result|
+  %h1
+    %span= link_to result.tournament.date_string, result.tournament
+  %hr
+  %table{:id => 'player_results', :class => 'player_results'}
+    %tr
+      %th= 'Name'
+      - if result.tournament.over? || result.tournament.today?
+        %th= 'Buy in'
+        %th= 'Winnings'
+    = render :partial => 'players/show', :locals => {:player => result}

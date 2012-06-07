@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   set_tab :poker
 
+  layout 'tournaments'
+
   before_filter :authenticated?
   before_filter :me?
 

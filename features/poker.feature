@@ -90,3 +90,21 @@ Scenario: A user can enter their tournament results
     And enters 20 in the buy in field
     Then the user should see '20' in the row for user 1
     And the user should see '30' in the row for user 1
+
+Scenario: A user can see a list of all tournaments they've played in
+    When a poker player logs in with google
+    And the following tournaments exist:
+        | Date       | id |
+        | 01-01-2011 | 1  |
+        | 03-01-2011 | 2  |
+    And the following players exist:
+        | User id | Tournament id | Buy in | Winnings | Finish |
+        | 1       | 1             | 10     | 30       | 1      |
+        | 1       | 2             | 10     | 30       | 1      |
+    And follows 'Poker'
+    And follows '1/1/2011'
+    And follows 'Poker Player'
+    Then the user should see 'You have played in 2 tournaments'
+    And the user should see 'Net winnings: 40'
+    And the user should see '1/1/2011'
+    And the user should see '1/3/2011'
