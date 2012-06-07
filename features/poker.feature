@@ -52,33 +52,6 @@ Scenario: A user can see a list of all tournaments
     Then the user should see '1/1/2011'
     And the user should see '1/1/2011'
 
-#Scenario: A user can see tournament results
-    #Given the following users exist:
-        #| Name  | id |
-        #| Glenn | 1  |
-        #| Paul  | 2  |
-    #And the following tournaments exist:
-        #| Date       | id |
-        #| 01-01-2011 | 1  |
-    #And the following players exist:
-        #| User id | Tournament id | Buy in | Winnings | Finish |
-        #| 1       | 1             | 10     | 30       | 1      |
-        #| 2       | 1             | 20     | 0        | 2      |
-    #When a poker player logs in with google
-    #And follows 'Poker'
-    #And follows '1/1/2011'
-    #And the user should see 'Buy in'
-    #And the user should see 'Winnings'
-    #And the user should see 'Finish'
-    #Then the user should see 'Glenn'
-    #And the user should see '10'
-    #And the user should see '30'
-    #And the user should see '1'
-    #And the user should see 'Paul'
-    #And the user should see '20'
-    #And the user should see '10'
-    #And the user should see '2'
-
 Scenario: Only admins can create new tournaments
     When a normal user logs in with google
     And visits the new_tournament page
@@ -96,28 +69,24 @@ Scenario: A user can RSVP to a tournament
     And the user should see 'Can't make it'
     And the user should not see 'I'll be there'
 
-Scenario: Only admins can add other users to a tournament
-#Scenario: A user can enter their tournament results
-    #Given the following users exist:
-        #| Name  | id |
-        #| Glenn | 1  |
-        #| Paul  | 2  |
-    #And the following tournaments exist:
-        #| Date       | id |
-        #| 01-01-2011 | 1  |
-    #And the following players exist:
-        #| User id | Tournament id | Buy in | Winnings | Finish |
-        #| 1       | 1             | 10     | 30       | 1      |
-        #| 2       | 1             | 20     | 0        | 2      |
-    #When a poker player logs in with google
-    #And follows 'Poker'
-    #And follows '1/1/2011'
-    #Then the user should see 'edit' in the row for user 1
-    #Then the user should not see 'update' in the row for user 2
-    #When the user follows 'edit'
-    #Then the user should see 10
-    #And the user should see 30
-    #When the user enters 20 in the 'Buy in' field
-    #And clicks 'Update'
-    #Then the user should see 20 in the row for user 1
-    #And the user should see 10 in the row for user 1
+@javascript
+Scenario: A user can enter their tournament results
+    When a poker player logs in with google
+    And the following users exist:
+        | Name         | id |
+        | Paul         | 2  |
+    And the following tournaments exist:
+        | Date       | id |
+        | 01-01-2011 | 1  |
+    And the following players exist:
+        | User id | Tournament id | Buy in | Winnings | Finish |
+        | 1       | 1             | 10     | 30       | 1      |
+        | 2       | 1             | 20     | 0        | 2      |
+    And follows 'Poker'
+    And follows '1/1/2011'
+    Then the user should see '10' in the row for user 1
+    And the user should see '30' in the row for user 1
+    When the user clicks the element with a data-attribute of buy_in
+    And enters 20 in the buy in field
+    Then the user should see '20' in the row for user 1
+    And the user should see '30' in the row for user 1

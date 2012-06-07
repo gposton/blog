@@ -6,8 +6,15 @@ FactoryGirl.define do
     admin false
   end
 
+  sequence :date do |n|
+    day = (n % 28) + 1
+    month = ((n / 28) % 12) + 1
+    year = ((n / 28) / 12) + 2001
+    Date.new(year,month,day)
+  end
+
   factory :tournament do
-    date {Date.new(2001,1,1)}
+    date
   end
 
   factory :player do

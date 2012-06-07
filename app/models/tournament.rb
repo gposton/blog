@@ -5,6 +5,7 @@ class Tournament < ActiveRecord::Base
 
   validates_associated :players
   validates_presence_of :date
+  validates_uniqueness_of :date
 
   default_scope :order => 'date DESC'
 

@@ -3,7 +3,6 @@
   - if show_results? player
     %td= result(player, :buy_in)
     %td= result(player, :winnings)
-    %td= result(player, :finish)
   - if show_rsvp? player
     %td= rsvp_link(player.tournament, true) if player.new_record? || player.no_show?
     %td= rsvp_link(player.tournament, false) if player.new_record? || !player.no_show?

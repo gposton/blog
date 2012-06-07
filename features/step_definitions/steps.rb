@@ -70,16 +70,19 @@ When /^.*signs in to google with (.*) and (.*) and allows access$/ do |email, pa
   end
 end
 
-When /^enters (.*) in the (.*) field$/ do |text, field|
+When /^(?:.*)?enters (.*) in the (.*) field$/ do |text, field|
   fill_in(field.gsub(' ', '_'), :with => text)
+  # Click somewhere else then wait a sec so that edit in place fields will submit and have time to update
+  find(:xpath, "//div[@class='content']").click()
+  sleep 0.5
 end
 
 When /^clicks '(.*)'$/ do |button|
  click_button button
 end
 
-When /^clicks the '(.*)' image$/ do |alt|
-  find(:xpath, "//img[@alt = '#{alt}']").click()
+When /^(?:.*)clicks the element with a (.*) of (.*)/ do |attribute, value|
+  find(:xpath, "//span[@#{attribute.strip}='#{value.strip}']").click()
 end
 
 When /^picks the (.*) from the calendar$/ do |date|
@@ -93,8 +96,8 @@ end
 
 When /^uploads a photo$/ do
   attach_file('photo_image', File.join(Rails.root, 'public', 'images', 'on_the_rock.jpeg'))
-  click_button 'Upload' 
-end 
+  click_button 'Upload'
+end
 
 When /^selects "([^"]*)" from "([^"]*)"$/ do |option, field|
   select(option, :from => field)

@@ -8,7 +8,6 @@
     - if @tournament.over? || @tournament.today?
       %th= 'Buy in'
       %th= 'Winnings'
-      %th= 'Finish'
   - unless @tournament.has_player? current_user
     = render :partial => 'players/show', :locals => {:player => Player.new(:user_id => current_user.id, :tournament_id => @tournament.id)}
   - @tournament.players.reject{|p|p.no_show?}.sort{|a,b|a.finish <=> b.finish}.each do |player|
