@@ -71,10 +71,10 @@ When /^.*signs in to google with (.*) and (.*) and allows access$/ do |email, pa
 end
 
 When /^(?:.*)?enters (.*) in the (.*) field$/ do |text, field|
-  fill_in(field.gsub(' ', '_'), :with => text)
-  # Click somewhere else then wait a sec so that edit in place fields will submit and have time to update
-  find(:xpath, "//div[@class='content']").click()
-  sleep 0.5
+  field = field.gsub(' ', '_')
+  fill_in(field, :with => text)
+  # This was added to submit the best in place fields after entering text/updates
+  find_field(field).native.send_key(:tab) rescue nil
 end
 
 When /^clicks '(.*)'$/ do |button|
