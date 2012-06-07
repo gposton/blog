@@ -70,7 +70,7 @@ When /^.*signs in to google with (.*) and (.*) and allows access$/ do |email, pa
   end
 end
 
-When /^(?:.*)?enters (.*) in the (.*) field$/ do |text, field|
+When /^(?:.*)enters (.*) in the (.*) field$/ do |text, field|
   field = field.gsub(' ', '_')
   fill_in(field, :with => text)
   # This was added to submit the best in place fields after entering text/updates
