@@ -20,13 +20,12 @@ gem 'tabs_on_rails'
 gem 'whenever'
 # We need to use mongrel so that omniauth works correctly
 # https://github.com/intridea/omniauth/issues/43
-gem 'mongrel', '1.2.0.pre2'
+gem 'mongrel'
 # Install reference: http://stackoverflow.com/questions/3979495/using-calendar-date-select-with-rails-3
 gem 'googlecharts'
 gem 'newrelic_rpm'
 gem 'encryptor'
 gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
-gem 'rvm-capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -45,13 +44,14 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development do
   gem 'guard-ctags-bundler'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
 end
 
 group :test do

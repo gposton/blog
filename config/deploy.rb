@@ -32,8 +32,7 @@ namespace :deploy do
  task :stop do ; end
  task :restart, :roles => :app, :except => { :no_release => true } do
    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   run "cd #{release_path} && bundle exec mongrel_rails cluster::restart"
-   run "/etc/init.d/mongrel_cluster restart"
+   run "cd #{release_path} && bundle exec mongrel_rails cluster::restart"
  end
  desc "Update the crontab file"  
  task :update_crontab, :roles => :db do  

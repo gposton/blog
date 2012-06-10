@@ -267,7 +267,7 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
-  mongrel (= 1.2.0.pre2)
+  mongrel
   newrelic_rpm
   omniauth-facebook
   omniauth-openid
