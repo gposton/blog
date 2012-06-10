@@ -21,6 +21,7 @@ gem 'whenever'
 # We need to use mongrel so that omniauth works correctly
 # https://github.com/intridea/omniauth/issues/43
 gem 'mongrel'
+gem 'mongrel_cluster'
 # Install reference: http://stackoverflow.com/questions/3979495/using-calendar-date-select-with-rails-3
 gem 'googlecharts'
 gem 'newrelic_rpm'
