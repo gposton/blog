@@ -10,7 +10,7 @@ set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
 set :user, "root"
 set :rvm_ruby_string, 'ruby-1.9.3@blog'
 set :rvm_install_type, :stable
-set :rvm_bin_path, "/usr/local/rvm/bin"
+set :rvm_path, '/usr/local/bin/rvm'
 set :bundle_without, [:test, :development]
 
 #set :use_sudo, true
