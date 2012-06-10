@@ -1,5 +1,6 @@
 require 'mongrel_cluster/recipes'
 require 'bundler/capistrano'
+require "rvm/capistrano"
 
 set :application, "blog"
 set :repository,  "https://github.com/gposton/blog.git"
