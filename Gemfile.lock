@@ -6,6 +6,14 @@ GIT
       jquery-rails
       rails (~> 3.1)
 
+GIT
+  remote: https://github.com/kyusik/mongrel_cluster.git
+  revision: f70086828f50a0bdb2cb24cef270cfc573619961
+  specs:
+    mongrel_cluster (1.0.6)
+      gem_plugin (>= 0.2.3)
+      mongrel (>= 1.1.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -122,9 +130,6 @@ GEM
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
-    mongrel_cluster (1.0.5)
-      gem_plugin (>= 0.2.3)
-      mongrel (>= 1.0.2)
     multi_json (1.3.2)
     multipart-post (1.1.5)
     net-scp (1.0.4)
@@ -271,7 +276,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mongrel
-  mongrel_cluster
+  mongrel_cluster!
   newrelic_rpm
   omniauth-facebook
   omniauth-openid
