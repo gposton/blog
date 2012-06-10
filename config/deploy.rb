@@ -1,0 +1,37 @@
+require 'mongrel_cluster/recipes'
+
+set :application, "blog"
+set :repository,  "https://github.com/gposton/blog.git"
+set :branch, "master"
+set :deploy_to, "/var/www/blog"
+set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
+set :user, "root"
+#set :use_sudo, true
+#default_run_options[:pty] = true
+
+set :scm, :git
+# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+
+role :web, "gbposton.no-ip.org"                          # Your HTTP server, Apache/etc
+role :app, "gbposton.no-ip.org"                         # This may be the same as your `Web` server
+role :db,  "gbposton.no-ip.org", :primary => true # This is where Rails migrations will run
+
+# If you are using Passenger mod_rails uncomment this:
+# if you're still using the script/reapear helper you will need
+# these http://github.com/rails/irs_process_scripts
+
+ namespace :deploy do
+   task :start do ; end
+   task :stop do ; end
+   task :restart, :roles => :app, :except => { :no_release => true } do
+     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+     run "cd #{release_path} && mongrel_rails cluster::restart"
+   end
+   desc "Update the crontab file"  
+   task :update_crontab, :roles => :db do  
+     run "cd #{release_path} && whenever --update-crontab #{application}"  
+   end
+ end
+
+  after "deploy:symlink", "deploy:update_crontab"  
+  after "deploy", "deploy:migrate"

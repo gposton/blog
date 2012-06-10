@@ -1,0 +1,9 @@
+--- 
+cwd: /var/www/blog/current
+log_file: /var/www/blog/shared/log/mongrel.log
+port: "8000"
+address: 127.0.0.1
+environment: production
+pid_file: /var/www/blog/shared/pids/mongrel.pid
+docroot: /var/www/blog/current/public
+servers: 3
