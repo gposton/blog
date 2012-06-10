@@ -26,6 +26,7 @@ gem 'googlecharts'
 gem 'newrelic_rpm'
 gem 'encryptor'
 gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
+gem 'rvm-capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
