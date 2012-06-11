@@ -14,7 +14,9 @@ class TournamentsController < ApplicationController
       Notifier.new_tournament(@tournament, Tournament.last_weeks_games, poker_players.collect{|player| player.email}).deliver
       redirect_to tournament_path @tournament
     else
-      logger.error @tournament.errors
+      flash[:error] = @tournament.errors.full_messages
+      logger.error @tournament.errors.full_messages
+      redirect_to tournaments_path
     end
   end
 
