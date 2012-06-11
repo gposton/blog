@@ -36,7 +36,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def self.last_weeks_games
-    Tournament.find :all, limit => 3
+    Tournament.find :all, :limit => 3
   end
 
   def to_param
