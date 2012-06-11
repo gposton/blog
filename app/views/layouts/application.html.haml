@@ -58,4 +58,4 @@
                   Subscribe to my RSS feed
                   = link_to( image_tag('rss_16.png', :align => :baseline), 'http://feeds.feedburner.com/ThreeProgrammersWalkedIntoABar', :id => 'rss_feed')
             = yield
-            = render :partial => ‘layouts/ga’ if Rails.env == ‘production’
+    = render :partial => 'layouts/ga' if Rails.env == ‘production’
