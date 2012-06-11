@@ -1,17 +1,19 @@
 class MigrateCommentToContent < ActiveRecord::Migration
   def up
-    add_column :comment, :content, :text
-    Comment.all.each do |comment|
-      comment.update_attributes :content => comment.comment
+    if column_exists? :comments, :comment
+      add_column :comments, :content, :text
+      Comment.all.each do |comment|
+        comment.update_attributes :content => comment.comment
+      end
+      remove_column :comments, :comment
     end
-    remove_column :comment :comment
   end
 
   def down
-    add_column :comment, :comment, :text
+    add_column :comments, :comment, :text
     Comment.all.each do |comment|
       comment.update_attributes :comment => comment.content
     end
-    remove_column :comment :content
+    remove_column :comments, :content
   end
 end
