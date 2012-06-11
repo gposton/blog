@@ -1,5 +1,5 @@
 class Tournament < ActiveRecord::Base
-  has_many :players
+  has_many :players, :dependent => :delete_all
 
   accepts_nested_attributes_for :players, :allow_destroy => true
 
