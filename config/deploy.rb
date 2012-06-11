@@ -32,9 +32,9 @@ namespace :deploy do
  task :stop do ; end
  task :restart, :roles => :app, :except => { :no_release => true } do
    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-   run "cd #{release_path} && bundle exec mongrel_rails start -p 8000 -e production"
-   run "cd #{release_path} && bundle exec mongrel_rails start -p 8001 -e production"
-   run "cd #{release_path} && bundle exec mongrel_rails start -p 8002 -e production"
+   run "cd #{release_path} && bundle exec mongrel_rails start -p 8000 -e production -d"
+   run "cd #{release_path} && bundle exec mongrel_rails start -p 8001 -e production -d"
+   run "cd #{release_path} && bundle exec mongrel_rails start -p 8002 -e production -d"
  end
  desc "Update the crontab file"  
  task :update_crontab, :roles => :db do  
