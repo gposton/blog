@@ -6,6 +6,10 @@ class AddAlbums < ActiveRecord::Migration
       t.timestamps
     end
     add_column :photos, :album_id, :integer
+    album = Album.create :name => 'New'
+    Photo.all.each do |photo|
+      photo.update_attributes :album_id => album.id
+    end
   end
 
   def down
