@@ -1,6 +1,7 @@
 %p
-  = "Click the link to "
+  = "Please "
   = link_to 'RSVP', tournament_url(@tournament)
+  = " even if you can't make it."
 %h3= "Latest games:" unless @recent_tournaments.empty?
 %table
   - @recent_tournaments.each do |tournament|
