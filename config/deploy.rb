@@ -31,11 +31,11 @@ namespace :deploy do
  task :start do ; end
  task :stop do ; end
  task :restart, :roles => :app, :except => { :no_release => true } do
-   run "killall ruby"
-   run "rm /var/www/blog/shared/pids/*" rescue nil
-   run "cd #{release_path} && bundle exec mongrel_rails start -p 8000 -e production -d -l /var/www/blog/shared/log/mongrel.8000.log -P /var/www/blog/shared/pids/mongrel.8000.pid"
-   run "cd #{release_path} && bundle exec mongrel_rails start -p 8001 -e production -d -l /var/www/blog/shared/log/mongrel.8001.log -P /var/www/blog/shared/pids/mongrel.8001.pid"
-   run "cd #{release_path} && bundle exec mongrel_rails start -p 8002 -e production -d -l /var/www/blog/shared/log/mongrel.8002.log -P /var/www/blog/shared/pids/mongrel.8002.pid"
+#   run "killall ruby"
+#   run "rm /var/www/blog/shared/pids/*" rescue nil
+   run "cd #{release_path} && bundle exec unicorn_rails start -p 8000 -E production -D"
+   run "cd #{release_path} && bundle exec unicorn_rails start -p 8001 -E production -D"
+   run "cd #{release_path} && bundle exec unicorn_rails start -p 8002 -E production -D"
    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
  end
  desc "Update the crontab file"  

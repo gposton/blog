@@ -20,9 +20,11 @@ gem 'tabs_on_rails'
 gem 'whenever'
 # We need to use mongrel so that omniauth works correctly
 # https://github.com/intridea/omniauth/issues/43
-gem 'mongrel'
-gem 'dispatcher'
-gem 'mongrel_cluster', :git => 'https://github.com/kyusik/mongrel_cluster.git'
+#gem 'mongrel'
+#gem 'dispatcher'
+#gem 'mongrel_cluster', :git => 'https://github.com/kyusik/mongrel_cluster.git'
+gem 'unicorn'
+
 # Install reference: http://stackoverflow.com/questions/3979495/using-calendar-date-select-with-rails-3
 gem 'googlecharts'
 gem 'newrelic_rpm'
