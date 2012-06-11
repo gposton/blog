@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :photos
-  has_many :poker_results, :foreign_key => 'user_id', :class_name => 'Player'
+  has_many :poker_results, :foreign_key => 'user_id', :class_name => 'Player', :conditions => ['no_show = ?', false]
 
   def self.create_with_omniauth(auth)
     create! do |user|

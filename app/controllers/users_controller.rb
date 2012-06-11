@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_filter :me?
 
   def show
-    @user = User.find params[:id]
+    @user = User.includes(:poker_results).find params[:id]
   end
 
   def edit
