@@ -36,7 +36,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def self.last_weeks_games
-    Tournament.all.keep_if{|tournament|tournament.date > (Date.today - 7)}
+    Tournament.find :all, limit => 3
   end
 
   def to_param
