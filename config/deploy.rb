@@ -33,7 +33,7 @@ namespace :deploy do
  task :restart, :roles => :app, :except => { :no_release => true } do
 #   run "killall ruby"
 #   run "rm /var/www/blog/shared/pids/*" rescue nil
-   run "cd #{release_path} && bundle exec unicorn_rails start -c /var/www/blog/current/config/unicorn.rb -D -E production"
+   run "cd #{release_path} && bundle exec unicorn_rails -c /var/www/blog/current/config/unicorn.rb -D -E production"
    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
  end
  desc "Update the crontab file"  
