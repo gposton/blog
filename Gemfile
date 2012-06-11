@@ -35,8 +35,8 @@ gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 # in production environments by default.
 group :assets do
   #gem 'sass-rails',   '~> 3.1.5'
-  #gem 'coffee-rails'
-  #gem 'uglifier', '>= 1.0.3'
+  gem 'coffee-rails'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
