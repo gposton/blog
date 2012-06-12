@@ -1,4 +1,3 @@
-require 'mongrel_cluster/recipes'
 require 'bundler/capistrano'
 require "rvm/capistrano"
 
