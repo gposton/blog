@@ -97,10 +97,12 @@ Scenario: A user can see a list of all tournaments they've played in
         | Date       | id |
         | 01-01-2011 | 1  |
         | 03-01-2011 | 2  |
+        | 05-01-2011 | 3  |
     And the following players exist:
-        | User id | Tournament id | Buy in | Winnings | Finish |
-        | 1       | 1             | 10     | 30       | 1      |
-        | 1       | 2             | 10     | 30       | 1      |
+        | User id | Tournament id | Buy in | Winnings | Finish | No_show |
+        | 1       | 1             | 10     | 30       | 1      | false   |
+        | 1       | 2             | 10     | 30       | 1      | false   |
+        | 1       | 3             | 10     | 30       | 1      | true    |
     And follows 'Poker'
     And follows '1/1/2011'
     And follows 'Poker Player'

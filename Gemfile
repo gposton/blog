@@ -70,10 +70,10 @@ group :test do
   # http://datacodescotch.blogspot.com/2011/11/warning-cucumber-rails-required-outside.html
   gem 'cucumber-rails', :require => false
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'spork'
   gem 'launchy'
   gem 'autotest-rails'
   gem 'autotest-growl'
   gem 'show_me_the_cookies'
+  gem 'database_cleaner'
 end
