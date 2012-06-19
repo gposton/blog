@@ -110,3 +110,11 @@ Scenario: A user can see a list of all tournaments they've played in
     And the user should see 'Net winnings: 40'
     And the user should see '1/1/2011'
     And the user should see '1/3/2011'
+
+Scenario: A poker player can update their email
+    When a poker player logs in with google
+    And follows 'Poker'
+    And follows 'Update email'
+    And enters foo@bar.com in the user email field
+    And clicks 'Register'
+    Then the user should see 'You'll now receive poker updates at foo@bar.com'
