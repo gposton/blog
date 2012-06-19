@@ -4,7 +4,8 @@
       - unless current_user.poker_player?
         = tab.register 'Register', poker_registration_path
       - else
-        = tab.register 'Unsubscribe', toggle_poker_player_user_path(current_user)
         = tab.all 'All tournaments', tournaments_path
         = tab.my_tournaments 'My tournaments', current_user
+        = tab.register 'Unsubscribe', toggle_poker_player_user_path(current_user)
+        = tab.change_email 'Update email', edit_user_path(current_user)
 = render :file => 'layouts/application'
