@@ -45,13 +45,15 @@ describe Tournament do
     @tournament.winners.count.should be 2
   end
 
-  it 'returns a list of the last 3 tournaments' do
+  it 'returns a list of the last 3 completed tournaments' do
+    Tournament.last_weeks_games.count.should be 1
+    FactoryGirl.create(:tournament, :date => (Date.today + 1)) #This one is in the future so it should not be counted
     Tournament.last_weeks_games.count.should be 1
     FactoryGirl.create(:tournament, :date => Date.today - 7)
     Tournament.last_weeks_games.count.should be 2
     FactoryGirl.create(:tournament, :date => (Date.today - 6))
     Tournament.last_weeks_games.count.should be 3
-    FactoryGirl.create(:tournament, :date => (Date.today - 1))
+    FactoryGirl.create(:tournament, :date => (Date.today - 5)) #This one should not be counted because only 3 should be returned
     Tournament.last_weeks_games.count.should be 3
   end
 
