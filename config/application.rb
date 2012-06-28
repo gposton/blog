@@ -3,6 +3,8 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'sprockets/railtie'
 
+load(File.expand_path('../heroku_env.rb', __FILE__))
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -46,14 +48,12 @@ module Blog
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    CONFIG = YAML.load_file '/etc/blog/blog.conf'
-
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :user_name            => Encryptor.decrypt("\xB2[_\xED\xE2\v&\xE3\xC7hw\xAF\x1E\x80\xE3\xC4\xF9H16\xA3\x98\x81c}b@<\x9B\xD2\xAB=" , :key => CONFIG['salt']),
-      :password             => Encryptor.decrypt("V\x9E\xF7A\x10\x8A<\x17\x00\x90\x11\x90]W)2" , :key => CONFIG['salt']),
+      :user_name            => ENV['email_user'],
+      :password             => ENV['email_pass'],
       :authentication       => 'plain',
       :enable_starttls_auto => true  }
   end
