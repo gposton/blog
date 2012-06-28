@@ -36,7 +36,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def self.last_weeks_games
-    Tournament.find(:all, :limit => 3, :conditions => ["date < ?", Time.now])
+    Tournament.find(:all, :limit => 3, :conditions => ["date < ?", Date.today])
   end
 
   def to_param

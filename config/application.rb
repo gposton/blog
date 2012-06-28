@@ -52,7 +52,6 @@ module Blog
     config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :domain               => 'baci.lindsaar.net',
       :user_name            => Encryptor.decrypt("\xB2[_\xED\xE2\v&\xE3\xC7hw\xAF\x1E\x80\xE3\xC4\xF9H16\xA3\x98\x81c}b@<\x9B\xD2\xAB=" , :key => CONFIG['salt']),
       :password             => Encryptor.decrypt("V\x9E\xF7A\x10\x8A<\x17\x00\x90\x11\x90]W)2" , :key => CONFIG['salt']),
       :authentication       => 'plain',
