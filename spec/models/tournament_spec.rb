@@ -6,6 +6,12 @@ describe Tournament do
     @tournament = FactoryGirl.create(:tournament)
   end
 
+  it 'sets the game number for new tournaments' do
+    @tournament.game_number.should be 1
+    Tournament.create(@tournament.attributes).game_number.should == 2
+    Tournament.create(@tournament.attributes).game_number.should == 3
+  end
+
   it 'accepts and validates nested attributes for players' do
     tournament = FactoryGirl.create(:tournament, :players => [FactoryGirl.build(:player), FactoryGirl.build(:player)])
     tournament.players.size.should be 2
@@ -59,6 +65,6 @@ describe Tournament do
 
   it 'uses the tournament date as the id in the url' do
     @tournament = FactoryGirl.create(:tournament, :date => Date.new(2011,1,2))
-    @tournament.to_param.should be == '2011_01_02'
+    @tournament.to_param.should be == '1-2-2011_1'
   end
 end

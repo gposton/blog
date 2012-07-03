@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621220352) do
+ActiveRecord::Schema.define(:version => 20120703042301) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20120621220352) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
-    t.text     "content"
+    t.text     "content",    :limit => 255
     t.string   "web_title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -87,8 +87,10 @@ ActiveRecord::Schema.define(:version => 20120621220352) do
 
   create_table "tournaments", :force => true do |t|
     t.date     "date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "game_number", :default => 1
+    t.string   "slug"
   end
 
   create_table "users", :force => true do |t|

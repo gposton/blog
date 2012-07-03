@@ -31,7 +31,7 @@ Scenario: A user is prompted for their email when the register if they haven't a
     And follows 'Register'
     And enters me@me.com in the user_email field
     And checks 'user_poker_player'
-    And clicks 'Register'
+    And clicks 'Update'
     Then the user should see 'You'll now receive poker updates at me@me.com'
 
 Scenario: A user can unsubscribe from poker
@@ -116,5 +116,5 @@ Scenario: A poker player can update their email
     And follows 'Poker'
     And follows 'Update email'
     And enters foo@bar.com in the user email field
-    And clicks 'Register'
+    And clicks 'Update'
     Then the user should see 'You'll now receive poker updates at foo@bar.com'

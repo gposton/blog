@@ -2,7 +2,7 @@
   %p{:class => 'center'}= "Click the tournament date below to see the results or RSVP."
   - @tournaments.each do |tournament|
     %h1
-      %span= link_to tournament.date_string, tournament
+      %span= link_to tournament.name, tournament
     %hr
 - else
   %p{:class => 'center'}

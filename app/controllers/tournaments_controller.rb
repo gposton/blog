@@ -21,7 +21,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @tournament = Tournament.includes(:players).find_by_param params[:id]
+    @tournament = Tournament.includes(:players).find params[:id]
   end
 
   def index
@@ -29,7 +29,7 @@ class TournamentsController < ApplicationController
   end
 
   def rsvp
-    tournament = Tournament.find_by_param params[:id]
+    tournament = Tournament.find params[:id]
     player = Player.find_or_initialize_by_user_id_and_tournament_id(current_user.id, tournament.id)
     player.no_show = params[:no_show]
     unless player.save

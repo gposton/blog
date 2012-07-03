@@ -133,7 +133,7 @@ Then /^the user should not see '(.*)'$/ do |text|
 end
 
 Then /^the user should see a link named '(.*)'$/ do |link|
-  find_link(link).visible?.should be_true
+  find_link(link).visible?.should == true
 end
 
 Then /^the user should be on the (.*?) page(?: with id, (.*))?$/ do |page, id|
