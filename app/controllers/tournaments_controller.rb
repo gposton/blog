@@ -14,9 +14,7 @@ class TournamentsController < ApplicationController
       Notifier.new_tournament(@tournament, Tournament.last_weeks_games, User.poker_players.collect{|player| player.email}).deliver
       redirect_to tournament_path @tournament
     else
-      flash[:error] = @tournament.errors.full_messages
-      logger.error @tournament.errors.full_messages
-      redirect_to tournaments_path
+      redirect_to tournaments_path, :error => @tournament.errors.full_messages
     end
   end
 
@@ -38,7 +36,6 @@ class TournamentsController < ApplicationController
       flash[:error] = 'Sorry, there was an error and we could not add you to the tournament.'
       logger.error = "Could not add user (#{current_user}) to tournament (#{tournament})"
     end
-    logger.error 'here'
     redirect_to tournament
   end
 end

@@ -13,16 +13,14 @@ class ApplicationController < ActionController::Base
 
   def authenticated?
     unless current_user
-      flash[:error] = "You'll need to sign in first."
-      redirect_to request.referer ? request.referer : home_path
+      redirect_to (request.referer ? request.referer : home_path), :error => "You'll need to sign in first."
       false
     end
   end
 
   def authorize
     unless current_user && current_user.admin?
-      flash[:error] = "You need to be an admin to do that!"
-      redirect_to (request.referer ? request.referer : home_path)
+      redirect_to (request.referer ? request.referer : home_path), :error => "You need to be an admin to do that!"
       false
     end
   end
@@ -40,8 +38,7 @@ class ApplicationController < ActionController::Base
     if current_user.id == params[:id].to_i || current_user.admin?
       return true
     else
-      flash[:error] = "You can't look at someone elses stuff."
-      redirect_to current_user
+      redirect_to current_user, :error => "You can't look at someone elses stuff."
       return false
     end
   end
