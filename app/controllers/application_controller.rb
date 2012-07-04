@@ -45,8 +45,4 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
-
-  def poker_players
-    User.all(:conditions => {:poker_player => true})
-  end
 end

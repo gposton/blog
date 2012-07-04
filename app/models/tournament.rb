@@ -56,6 +56,11 @@ class Tournament < ActiveRecord::Base
     self.game_number = tournament_count + 1
   end
 
+  def pending_rsvps
+    rsvpd_user_ids = self.players.map{|player| player.user.id}
+    User.poker_players.delete_if{|user| rsvpd_user_ids.include? user.id}
+  end
+
   def self.all_on(date)
     Tournament.find(:all, :conditions => ["date = ?", date])
   end

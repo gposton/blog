@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     total_winnings = self.poker_results.collect{|result|result.winnings}.inject(:+) || 0
     total_winnings - total_buy_ins
   end
+
+  def self.poker_players
+    User.all(:conditions => {:poker_player => true})
+  end
 end

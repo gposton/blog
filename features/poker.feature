@@ -118,3 +118,22 @@ Scenario: A poker player can update their email
     And enters foo@bar.com in the user email field
     And clicks 'Update'
     Then the user should see 'You'll now receive poker updates at foo@bar.com'
+
+Scenario: An admin can add users to a tournamnent
+    Given the following users exist:
+        | Id | Name         |
+        | 1  | Poker Player |
+    Given the following tournaments exist:
+        | Date       | id |
+        | 01-01-2011 | 1  |
+    When a poker player logs in with google
+    And follows 'Poker'
+    And follows '1/1/2011'
+    Then the user should not see 'Add user'
+    When an admin logs in with google
+    And follows 'Poker'
+    And follows '1/1/2011'
+    Then the user should not see a link named 'Poker Player'
+    And selects "Poker Player" from "user_id"
+    And clicks 'Add user'
+    Then the user should see a link named 'Poker Player'

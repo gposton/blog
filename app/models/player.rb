@@ -15,6 +15,13 @@ class Player < ActiveRecord::Base
   end
 
   def name
+    logger.error "persisted: #{persisted?}"
+    logger.error "user_id: #{user_id}"
     self.user.name
+  end
+
+  def toggle_no_show
+    self.no_show = !no_show
+    self
   end
 end

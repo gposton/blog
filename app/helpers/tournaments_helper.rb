@@ -3,12 +3,8 @@ module TournamentsHelper
     current_user.email.nil? ? edit_user_path(current_user) : toggle_poker_player_user_path(current_user)
   end
 
-  def rsvp_link(tournament, no_show)
-    link_to (no_show ? "I'll be there" : "Can't make it"), rsvp_tournament_path(tournament, :no_show => !no_show)
-  end
-
-  def result(player, field)
-    best_in_place_if (current_user.admin? || player.user_id == current_user.id), player, field.to_sym
+  def result(player, field, options = {})
+    best_in_place_if (current_user.admin? || player.user_id == current_user.id), player, field.to_sym, options
   end
 
   def show_results?(player)

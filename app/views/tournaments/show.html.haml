@@ -2,15 +2,18 @@
   %span= @tournament.name
   -#%span{:class => 'right'}= "Pot: $#{@tournament.total_pot}"
 %hr
+- if current_user.admin?
+  = render :partial => 'players/player', :locals => {:player => Player.new(:tournament_id => @tournament.id, :no_show => true)}
 %table{:id => 'player_results', :class => 'player_results'}
   %tr
     %th= 'Name'
     - if @tournament.over? || @tournament.today?
       %th= 'Buy in'
       %th= 'Winnings'
-  - unless @tournament.has_player? current_user
-    = render :partial => 'players/show', :locals => {:player => Player.new(:user_id => current_user.id, :tournament_id => @tournament.id)}
+  - @tournament.players.reject{|p|p.user_id != current_user.id}.each do |player|
+    = render :partial => 'players/show', :locals => {:player => player}
   - @tournament.players.reject{|p|p.no_show?}.sort{|a,b|a.finish <=> b.finish}.each do |player|
-    = render :partial => 'players/show', :locals => {:player => player}
-  - @tournament.players.keep_if{|p|p.no_show?}.each do |player|
-    = render :partial => 'players/show', :locals => {:player => player}
+    = render :partial => 'players/show', :locals => {:player => player} unless player.user_id == current_user.id
+  - @tournament.players.reject{|p|!p.no_show?}.each do |player|
+    = render :partial => 'players/show', :locals => {:player => player} unless player.user_id == current_user.id
+

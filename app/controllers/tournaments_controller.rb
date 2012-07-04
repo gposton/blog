@@ -11,7 +11,7 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new params[:tournament]
     if @tournament.save
-      Notifier.new_tournament(@tournament, Tournament.last_weeks_games, poker_players.collect{|player| player.email}).deliver
+      Notifier.new_tournament(@tournament, Tournament.last_weeks_games, User.poker_players.collect{|player| player.email}).deliver
       redirect_to tournament_path @tournament
     else
       flash[:error] = @tournament.errors.full_messages
@@ -22,6 +22,7 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.includes(:players).find params[:id]
+    @tournament.players << Player.create(:user_id => current_user.id, :tournament_id => @tournament.id, :no_show => true) unless @tournament.has_player? current_user
   end
 
   def index
@@ -30,12 +31,14 @@ class TournamentsController < ApplicationController
 
   def rsvp
     tournament = Tournament.find params[:id]
-    player = Player.find_or_initialize_by_user_id_and_tournament_id(current_user.id, tournament.id)
+    user = User.find_by_id params[:user_id]
+    player = Player.find_or_initialize_by_user_id_and_tournament_id(user.id, tournament.id)
     player.no_show = params[:no_show]
     unless player.save
       flash[:error] = 'Sorry, there was an error and we could not add you to the tournament.'
       logger.error = "Could not add user (#{current_user}) to tournament (#{tournament})"
     end
+    logger.error 'here'
     redirect_to tournament
   end
 end

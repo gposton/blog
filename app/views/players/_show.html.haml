@@ -5,5 +5,4 @@
     %td= result(player, :buy_in)
     %td= result(player, :winnings)
   - if show_rsvp? player
-    %td= rsvp_link(player.tournament, true) if player.new_record? || player.no_show?
-    %td= rsvp_link(player.tournament, false) if player.new_record? || !player.no_show?
+    %td= result(player, :no_show, :type => :checkbox, :collection => ["I'll be there", "Can't make it"])

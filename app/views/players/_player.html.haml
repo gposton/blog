@@ -1,0 +1,5 @@
+= form_for player do |form|
+  = form.hidden_field :tournament_id
+  = form.hidden_field :no_show
+  = form.select :user_id, options_from_collection_for_select(player.tournament.pending_rsvps, 'id', 'name')
+  = form.submit 'Add player'
