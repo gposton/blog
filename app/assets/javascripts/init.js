@@ -5,7 +5,3 @@ $(document).ready(
     $( '.rsvp' ).bind("ajax:success", function(){$(this).parent('td').siblings('.name').toggleClass('strike');});
   }
 );
-$(document).ready(
-  function() {
-  }
-);
