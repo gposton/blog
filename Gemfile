@@ -7,7 +7,7 @@ gem 'pg'
 gem 'unicorn'
 
 gem 'jquery-rails'
-gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
+gem 'best_in_place', :git => 'https://github.com/gposton/best_in_place.git'
 
 gem 'omniauth-openid'
 gem 'omniauth-facebook'

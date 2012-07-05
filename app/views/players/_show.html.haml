@@ -1,8 +1,9 @@
 %tr{:id => "result_#{player.user_id}",:class => cycle('odd','even')}
-  %td{:class => player.no_show? ? 'strike' : ''}
+  %td{:class => player.no_show? ? 'name strike' : 'name'}
     = (current_user.admin? || current_user.id == player.user_id) ? link_to(player.name, player.user) : player.name
   - if show_results? player
     %td= result(player, :buy_in)
     %td= result(player, :winnings)
   - if show_rsvp? player
-    %td= result(player, :no_show, :type => :checkbox, :collection => ["I'll be there", "Can't make it"])
+    %td
+      = result(player, :no_show, :type => :checkbox, :collection => ["Can't make it", "I'll be there"], :classes => 'rsvp')
