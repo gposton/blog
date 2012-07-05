@@ -3,7 +3,7 @@ class PlayerResultToPlayer < ActiveRecord::Migration
     create_table :players do |t|
       t.integer :user_id
       t.integer :tournament_id
-      t.integer :buy_in, :default => BUY_IN
+      t.integer :buy_in, :default => 0
       t.integer :winnings, :default => 0
       t.integer :finish, :default => 0
 
