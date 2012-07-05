@@ -15,8 +15,6 @@ class Player < ActiveRecord::Base
   end
 
   def name
-    logger.error "persisted: #{persisted?}"
-    logger.error "user_id: #{user_id}"
     self.user.name
   end
 

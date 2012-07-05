@@ -2,6 +2,7 @@
   %head
     %title= @post ? @post.title : 'Three programmers walked into a bar...'
     %link{:rel => "shortcut icon", :href => "/images/favicon.ico"}
+    = csrf_meta_tag
     = auto_discovery_link_tag(:rss, "#{posts_path}.rss")
     = stylesheet_link_tag "application"
     = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css"
