@@ -2,6 +2,8 @@
   %head
     %title= @post ? @post.title : 'Three programmers walked into a bar...'
     %link{:rel => "shortcut icon", :href => "/images/favicon.ico"}
+    -# Without csrf_meta_tag AJAX requests create a new session
+    -# referrence: http://joshhuckabee.com/jquery-rails-3
     = csrf_meta_tag
     = auto_discovery_link_tag(:rss, "#{posts_path}.rss")
     = stylesheet_link_tag "application"
