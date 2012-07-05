@@ -4,7 +4,7 @@ gem 'rails', '3.2.3'
 
 gem 'pg'
 
-gem 'unicorn'
+gem 'thin'
 
 gem 'jquery-rails'
 gem 'best_in_place', :git => 'https://github.com/gposton/best_in_place.git'
@@ -38,7 +38,6 @@ group :development do
   gem 'sqlite3'
   gem 'taps'
   gem 'heroku'
-  gem 'thin'
 end
 
 group :test do
