@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     else
       Notifier.error('Could not change poker registration status', current_user).deliver
       logger.error("Could not change poker registration status for #{current_user}")
-      redirect_to tournaments_path, :error => "Sorry, I could not change your registration status."
+      redirect_to(tournaments_path, :alert => "Sorry, I could not change your registration status.")
     end
   end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     else
       Notifier.error('Could not change poker registration status', current_user).deliver
       logger.error("Could not change poker registration status for #{current_user}")
-      redirect_to tournaments_path, :error => "Sorry, I could not change your registration status."
+      redirect_to(tournaments_path, :alert => "Sorry, I could not change your registration status.")
     end
   end
 end

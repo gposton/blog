@@ -17,9 +17,9 @@
             - if flash[:notice]
               %span{:class => 'notice'}
                 = flash[:notice]
-            - if flash[:error]
+            - if flash[:alert]
               %span{:class => 'error'}
-                = flash[:error]
+                = flash[:alert]
             %div
               %div#user_nav{:class => 'user_nav'}
                 - if current_user

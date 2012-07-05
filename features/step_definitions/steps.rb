@@ -133,7 +133,7 @@ Then /^the user should not see '(.*)'$/ do |text|
 end
 
 Then /^the user should not see a link named '(.*)'$/ do |link|
-  find_link(link).visible?.should == false
+  page.should_not have_link link
 end
 
 Then /^the user should see a link named '(.*)'$/ do |link|

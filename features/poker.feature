@@ -57,6 +57,7 @@ Scenario: Only admins can create new tournaments
     And visits the new_tournament page
     Then the user should see 'You need to be an admin to do that!'
 
+@javascript
 Scenario: A user can RSVP to a tournament
     Given the following tournaments exist:
         | Date       | id |
@@ -64,7 +65,7 @@ Scenario: A user can RSVP to a tournament
     When a poker player logs in with google
     And follows 'Poker'
     And follows '1/1/2050'
-    And follows 'I'll be there'
+    And the user clicks the element with a data-attribute of no_show
     Then the user should see 'Poker Player'
     And the user should see 'Can't make it'
     And the user should not see 'I'll be there'
@@ -121,11 +122,11 @@ Scenario: A poker player can update their email
 
 Scenario: An admin can add users to a tournamnent
     Given the following users exist:
-        | Id | Name         |
-        | 1  | Poker Player |
+        | Name         | Poker_player | Id |
+        | Normal User  | true         | 2  |
     Given the following tournaments exist:
-        | Date       | id |
-        | 01-01-2011 | 1  |
+        | Date       |
+        | 01-01-2011 |
     When a poker player logs in with google
     And follows 'Poker'
     And follows '1/1/2011'
@@ -133,7 +134,7 @@ Scenario: An admin can add users to a tournamnent
     When an admin logs in with google
     And follows 'Poker'
     And follows '1/1/2011'
-    Then the user should not see a link named 'Poker Player'
-    And selects "Poker Player" from "user_id"
-    And clicks 'Add user'
-    Then the user should see a link named 'Poker Player'
+    Then the user should not see a link named 'Normal User'
+    And selects "Normal User" from "player_user_id"
+    And clicks 'Add player'
+    Then the user should see a link named 'Normal User'

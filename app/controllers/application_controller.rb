@@ -13,14 +13,14 @@ class ApplicationController < ActionController::Base
 
   def authenticated?
     unless current_user
-      redirect_to (request.referer ? request.referer : home_path), :error => "You'll need to sign in first."
+      redirect_to((request.referer ? request.referer : home_path), :alert => "You'll need to sign in first.")
       false
     end
   end
 
   def authorize
     unless current_user && current_user.admin?
-      redirect_to (request.referer ? request.referer : home_path), :error => "You need to be an admin to do that!"
+      redirect_to((request.referer ? request.referer : home_path), :alert => "You need to be an admin to do that!")
       false
     end
   end
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def special_access?
     unless current_user && current_user.special_access?
       logger.info "#{current_user.name} blocked because the user did not have special access."
-      flash[:error] = "You need special access to do that!"
+      flash[:alert] = "You need special access to do that!"
       return false
     end
     true
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     if current_user.id == params[:id].to_i || current_user.admin?
       return true
     else
-      redirect_to current_user, :error => "You can't look at someone elses stuff."
+      redirect_to(current_user, :alert => "You can't look at someone elses stuff.")
       return false
     end
   end
