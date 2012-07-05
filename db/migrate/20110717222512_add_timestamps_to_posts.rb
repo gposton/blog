@@ -1,7 +1,7 @@
 class AddTimestampsToPosts < ActiveRecord::Migration
   def self.up
-    add_column :posts, :created_at, :timestamp, :default => 'CURRENT_TIMESTAMP'
-    add_column :posts, :updated_at, :timestamp, :default => 'CURRENT_TIMESTAMP', :on_update => 'CURRENT_TIMESTAMP'
+    add_column :posts, :created_at, :timestamp
+    add_column :posts, :updated_at, :timestamp
   end
 
   def self.down
