@@ -44,6 +44,11 @@ GEM
     autotest-growl (0.2.16)
     autotest-rails (4.1.2)
       ZenTest (~> 4.5)
+    aws-sdk (1.5.6)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     builder (3.0.0)
     capistrano (2.12.0)
       highline
@@ -109,6 +114,9 @@ GEM
       excon (~> 0.14.0)
     highline (1.6.13)
     hike (1.2.1)
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
     httpauth (0.1)
     i18n (0.6.0)
     journey (1.0.4)
@@ -130,6 +138,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.3.6)
+    multi_xml (0.5.1)
     multipart-post (1.1.5)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -256,6 +265,7 @@ GEM
     uglifier (1.2.6)
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
+    uuidtools (2.1.2)
     whenever (0.7.3)
       activesupport (>= 2.3.4)
       chronic (~> 0.6.3)
@@ -270,6 +280,7 @@ DEPENDENCIES
   acts_as_commentable
   autotest-growl
   autotest-rails
+  aws-sdk
   best_in_place!
   capistrano
   capybara
