@@ -1,0 +1,3 @@
+%p= @comment.content
+
+= post_url(@object) if @comment.commentable_type == 'Post'
