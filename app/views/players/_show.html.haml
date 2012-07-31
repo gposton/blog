@@ -5,12 +5,4 @@
     %td= result(player, :buy_in)
     %td= result(player, :winnings)
   - if show_rsvp? player
-    %td
-      %span{:id => 'rsvp'}= result(player, :no_show, :type => :checkbox, :collection => ["Can't make it", "I'll be there"], :classes => 'rsvp')
-      - if current_user.id == player.user_id
-        %span{:id => 'click_me', :style => 'font-weight:bold'}= "(Click to update)"
-        :javascript
-          $('#click_me').fadeIn(1000);
-          $('#click_me').fadeOut(1000);
-          $('#click_me').fadeIn(750);
-          $('#click_me').fadeOut(750);
+    %td= result(player, :no_show, :type => :checkbox, :collection => ["Can't make it", "I'll be there"], :classes => 'rsvp')

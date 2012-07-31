@@ -1,7 +1,12 @@
 %h1
   %span= @tournament.name
-  -#%span{:class => 'right'}= "Pot: $#{@tournament.total_pot}"
 %hr
+- unless @tournament.over?
+  %div{:class => 'center'}
+    You're name will be <s>striked</s> through if you RSVP No.
+  %div{:class => 'center'}
+    To toggle, click "I'll be there" or "Can't make it."
+%br
 - if current_user.admin?
   = render :partial => 'players/player', :locals => {:player => Player.new(:tournament_id => @tournament.id, :no_show => true)}
 %table{:id => 'player_results', :class => 'player_results'}
