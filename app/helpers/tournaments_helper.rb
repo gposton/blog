@@ -12,6 +12,6 @@ module TournamentsHelper
   end
 
   def show_rsvp?(player)
-    !player.tournament.over? && (player.user_id == current_user.id || current_user.admin?)
+    (!player.tournament.over? && player.user_id == current_user.id) || current_user.admin?
   end
 end
