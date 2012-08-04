@@ -39,6 +39,7 @@ group :development do
   gem 'sqlite3'
   gem 'taps'
   gem 'heroku'
+  gem 'rack-mini-profiler'
 end
 
 group :test do

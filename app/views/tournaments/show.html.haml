@@ -1,12 +1,6 @@
 %h1
   %span= @tournament.name
 %hr
-- unless @tournament.over?
-  %div{:class => 'center'}
-    You're name will be <s>striked</s> through if you RSVP No.
-  %div{:class => 'center'}
-    To toggle, click "I'll be there" or "Can't make it."
-%br
 - if current_user.admin?
   = render :partial => 'players/player', :locals => {:player => Player.new(:tournament_id => @tournament.id, :no_show => true)}
 %table{:id => 'player_results', :class => 'player_results'}
@@ -15,6 +9,8 @@
     - if @tournament.over? || @tournament.today?
       %th= 'Buy in'
       %th= 'Winnings'
+    - if current_user.admin? || !@tournament.over?
+      %th{:class => 'rsvp_col'}= 'Rsvp'
   - @tournament.players.reject{|p|p.user_id != current_user.id}.each do |player|
     = render :partial => 'players/show', :locals => {:player => player}
   - @tournament.players.reject{|p|p.no_show?}.sort{|a,b|a.finish <=> b.finish}.each do |player|

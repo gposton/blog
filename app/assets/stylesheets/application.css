@@ -146,6 +146,14 @@ h1 a {
   padding: 0 10px 10px 10px;
 }
 
+.no_padd {
+  padding: 0px !important;
+}
+
+.padd_top {
+  padding-top: 10px !important;
+}
+
 .odd {
   background-color: #ffffee;
 }
@@ -207,6 +215,10 @@ h1 a {
 
 .player_results th {
   width: 120px;
+}
+
+.rsvp_col {
+  width: 48px !important;
 }
 
 .right {

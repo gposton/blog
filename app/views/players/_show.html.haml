@@ -1,8 +1,11 @@
 %tr{:id => "result_#{player.user_id}",:class => cycle('odd','even')}
-  %td{:class => player.no_show? ? 'name strike' : 'name'}
+  %td{:class => 'name padd_top'}
     = (current_user.admin? || current_user.id == player.user_id) ? link_to(player.name, player.user) : player.name
   - if show_results? player
-    %td= result(player, :buy_in)
-    %td= result(player, :winnings)
+    %td{:class => 'padd_top'}= result(player, :buy_in)
+    %td{:class => 'padd_top'}= result(player, :winnings)
   - if show_rsvp? player
-    %td= result(player, :no_show, :type => :checkbox, :collection => ["Can't make it", "I'll be there"], :classes => 'rsvp')
+    %td{:class => 'rsvp_status no_padd'}
+      %div{:id => 'rsvp_yes', :style => player.no_show? ? 'display: none' : '' }= image_tag 'check.png'
+      %div{:id => 'rsvp_no', :style => player.no_show? ? '' : 'display: none' }= image_tag 'close.png'
+    %td{:class => 'padd_top'}= result(player, :no_show, :type => :checkbox, :collection => ["Can't make it", "I'll be there"], :classes => 'rsvp')

@@ -8,7 +8,7 @@ module TournamentsHelper
   end
 
   def show_results?(player)
-    !player.new_record? && !player.no_show? && (player.tournament.today? || player.tournament.over?)
+    !player.new_record? && (player.tournament.today? || player.tournament.over?)
   end
 
   def show_rsvp?(player)
