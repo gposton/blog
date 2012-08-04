@@ -1,5 +1,6 @@
 %h1
   %span= @tournament.name
+  %span{:class => 'right'}= pluralize(@tournament.players.reject{|p|p.no_show?}.size, 'rsvp')
 %hr
 - if current_user.admin?
   = render :partial => 'players/player', :locals => {:player => Player.new(:tournament_id => @tournament.id, :no_show => true)}
