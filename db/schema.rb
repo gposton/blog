@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(:version => 20120705040542) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "photos", :force => true do |t|
-    t.integer  "user_id",            :limit => 255
+    t.integer  "user_id"
     t.boolean  "displaying"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "album_id"
   end
 

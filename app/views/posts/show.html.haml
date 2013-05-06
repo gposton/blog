@@ -5,6 +5,7 @@
         = "Posted #{time_ago_in_words(@post.updated_at)} ago"
       %h1{:style => 'margin: 0 0 0 0;'}
         = @post.title
+      = social_share_button_tag(@post.title)
 != textilize(@post.content)
 %div#comments
   %div#disqus_thread
