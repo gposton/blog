@@ -1,6 +1,8 @@
 require 'paperclip'
 
 class Post < ActiveRecord::Base
+  default_scope order('created_at DESC')
+
   acts_as_commentable
 
   before_create :create_web_title

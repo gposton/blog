@@ -2,6 +2,6 @@
   %h1= link_to post.title, post
   %hr
   %div{:class => 'date', :style => 'float: right;'}
-    = "Posted #{time_ago_in_words(post.updated_at)} ago"
+    = "Posted #{time_ago_in_words(post.created_at)} ago"
   -#truncate the content to 50 chars but be sure to split on word boundaries
   != textilize(truncate(post.content, :length => 525, :separator => ' ', :omission => "... #{link_to '[more]', post}"))

@@ -46,9 +46,9 @@ class PostsController < ApplicationController
 
   def index
     if params[:tag]
-      @posts = Tag.find_by_param(params[:tag]).posts.reverse rescue []
+      @posts = Tag.find_by_param(params[:tag]).posts rescue []
     else
-      @posts = Post.all.reverse
+      @posts = Post.all
     end
     respond_to do |format|
       format.html { render :index }
